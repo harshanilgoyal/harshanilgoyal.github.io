@@ -50,7 +50,13 @@ a{color:inherit;text-decoration:none}
   z-index:100;
   transition:transform .3s cubic-bezier(.4,0,.2,1);
   overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(79,140,247,.3) transparent;
 }
+.sidebar::-webkit-scrollbar{width:5px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(79,140,247,.3);border-radius:10px}
+.sidebar::-webkit-scrollbar-thumb:hover{background:rgba(79,140,247,.5)}
 .sidebar::before{
   content:'';position:absolute;top:0;left:0;right:0;bottom:0;
   background:radial-gradient(ellipse at 50% 0%, rgba(79,140,247,.08) 0%, transparent 70%);
@@ -347,12 +353,48 @@ a{color:inherit;text-decoration:none}
 .cta-btn--outline:hover{background:var(--accent);color:#fff}
 
 /* ══ RESUME VIEWER ══ */
-.resume-viewer{text-align:center}
-.resume-viewer__frame{
-  width:100%;max-width:100%;height:920px;border:1px solid #e0e4ea;
-  border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.06);margin:0 auto 24px;display:block;
+.resume-viewer{
+  max-width:820px;margin:0 auto;
 }
-.resume-viewer__actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.resume-viewer__wrap{
+  background:linear-gradient(135deg,#f0f2f5,#e8edf3);
+  border-radius:16px;padding:24px;
+  box-shadow:0 2px 8px rgba(0,0,0,.04),0 8px 32px rgba(0,0,0,.06);
+  position:relative;
+}
+.resume-viewer__header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;padding:0 4px;
+}
+.resume-viewer__title{
+  display:flex;align-items:center;gap:8px;
+  font-size:.9rem;font-weight:600;color:var(--text-secondary);
+}
+.resume-viewer__dot{
+  width:10px;height:10px;border-radius:50%;display:inline-block;
+}
+.resume-viewer__dot--r{background:#ff5f57}
+.resume-viewer__dot--y{background:#febc2e}
+.resume-viewer__dot--g{background:#28c840}
+.resume-viewer__frame{
+  width:100%;height:85vh;min-height:600px;max-height:1050px;
+  border:none;border-radius:10px;display:block;
+  background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+.resume-viewer__actions{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
+  margin-top:20px;
+}
+.resume-viewer__fallback{
+  display:none;text-align:center;padding:48px 20px;
+  background:#fff;border-radius:10px;
+}
+.resume-viewer__fallback p{color:var(--text-secondary);margin-bottom:16px;font-size:1rem}
+@media(max-width:768px){
+  .resume-viewer__wrap{padding:12px}
+  .resume-viewer__frame{height:60vh;min-height:400px}
+}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){
@@ -370,7 +412,7 @@ a{color:inherit;text-decoration:none}
   .exp-card__head{flex-direction:column}
   .skills-grid{grid-template-columns:1fr}
   body.sidebar-open{overflow:hidden}
-  .resume-viewer__frame{height:500px}
+  .resume-viewer__frame{height:60vh;min-height:400px}
 }
 @media(max-width:480px){
   .hero__subtitle{font-size:.95rem}
@@ -638,7 +680,22 @@ a{color:inherit;text-decoration:none}
       <h2 class="sh">Resume</h2>
       <div class="sh-bar"></div>
       <div class="resume-viewer">
-        <iframe src="resume.pdf" class="resume-viewer__frame" title="Resume - Harsh Goyal"></iframe>
+        <div class="resume-viewer__wrap">
+          <div class="resume-viewer__header">
+            <div style="display:flex;gap:6px">
+              <span class="resume-viewer__dot resume-viewer__dot--r"></span>
+              <span class="resume-viewer__dot resume-viewer__dot--y"></span>
+              <span class="resume-viewer__dot resume-viewer__dot--g"></span>
+            </div>
+            <span class="resume-viewer__title">📄 Harsh_Goyal_Resume.pdf</span>
+            <div style="width:50px"></div>
+          </div>
+          <iframe src="resume.pdf#toolbar=0&navpanes=0&view=FitH" class="resume-viewer__frame" title="Resume - Harsh Goyal"></iframe>
+          <div class="resume-viewer__fallback" id="resumeFallback">
+            <p>PDF preview is not available in this browser.</p>
+            <a href="resume.pdf" target="_blank" rel="noopener" class="cta-btn">View Resume →</a>
+          </div>
+        </div>
         <div class="resume-viewer__actions">
           <a href="resume.pdf" target="_blank" rel="noopener" class="cta-btn">Open Full Screen →</a>
           <a href="resume.pdf" download="Harsh_Goyal_Resume.pdf" class="cta-btn cta-btn--outline">⬇ Download PDF</a>
