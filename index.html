@@ -206,6 +206,16 @@ a{color:inherit;text-decoration:none}
   cursor:pointer;transition:background .2s;text-decoration:none;
 }
 .cta-btn:hover{background:var(--accent-hover)}
+.cta-btn--outline{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.cta-btn--outline:hover{background:var(--accent);color:#fff}
+
+/* ══ RESUME VIEWER ══ */
+.resume-viewer{text-align:center}
+.resume-viewer__frame{
+  width:100%;max-width:750px;height:920px;border:1px solid #e0e4ea;
+  border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.06);margin:0 auto 24px;display:block;
+}
+.resume-viewer__actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1024px){
@@ -223,6 +233,7 @@ a{color:inherit;text-decoration:none}
   .exp-card__head{flex-direction:column}
   .skills-grid{grid-template-columns:1fr}
   body.sidebar-open{overflow:hidden}
+  .resume-viewer__frame{height:500px}
 }
 @media(max-width:480px){
   .hero__subtitle{font-size:.95rem}
@@ -260,6 +271,7 @@ a{color:inherit;text-decoration:none}
     <a href="#projects" class="sidebar__link">Projects</a>
     <a href="#skills" class="sidebar__link">Skills</a>
     <a href="#education" class="sidebar__link">Education</a>
+    <a href="#resume" class="sidebar__link">Resume</a>
     <a href="#contact" class="sidebar__link">Contact</a>
   </nav>
   <div class="sidebar__bottom">
@@ -487,6 +499,21 @@ a{color:inherit;text-decoration:none}
         <div class="edu-card__school">Shri Ramdeobaba College of Engineering and Management</div>
         <div class="edu-card__degree">B.E. in Computer Science</div>
         <div class="edu-card__meta">2016 — 2020 · Nagpur, India</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section class="section" id="resume">
+    <div class="section__inner reveal">
+      <h2 class="sh">Resume</h2>
+      <div class="sh-bar"></div>
+      <div class="resume-viewer">
+        <iframe src="resume.pdf" class="resume-viewer__frame" title="Resume - Harsh Goyal"></iframe>
+        <div class="resume-viewer__actions">
+          <a href="resume.pdf" target="_blank" rel="noopener" class="cta-btn">Open Full Screen →</a>
+          <a href="resume.pdf" download="Harsh_Goyal_Resume.pdf" class="cta-btn cta-btn--outline">⬇ Download PDF</a>
+        </div>
       </div>
     </div>
   </section>
