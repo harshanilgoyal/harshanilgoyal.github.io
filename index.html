@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Harsh Goyal — Software Developer</title>
-<meta name="description" content="Harsh Goyal — Software Developer at Finastra. Builder of 13+ production systems — AI vision, cloud infrastructure, ERP, and automation.">
-<meta name="theme-color" content="#050505">
+<meta name="description" content="Harsh Goyal — Software Developer at Finastra. Builder of 13+ production systems spanning AI vision, cloud infrastructure, ERP, and automation.">
+<meta name="theme-color" content="#fafafa">
 <meta property="og:title" content="Harsh Goyal — Software Developer">
-<meta property="og:description" content="Software Developer at Finastra. Builder of 13+ production systems — AI vision, cloud infrastructure, ERP, and automation.">
+<meta property="og:description" content="Software Developer at Finastra. Builder of 13+ production systems spanning AI vision, cloud infrastructure, ERP, and automation.">
 <meta property="og:image" content="https://harshanilgoyal.github.io/img/profile.jpg">
 <meta property="og:url" content="https://harshanilgoyal.github.io">
 <meta property="og:type" content="website">
@@ -15,1807 +15,1329 @@
 <link rel="icon" type="image/png" href="img/boss.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════
+   Variables
+   ═══════════════════════════════════════════════ */
 :root {
-  --bg: #050505;
-  --surface: #0e0e0e;
-  --border: rgba(255,255,255,0.06);
-  --text: #ededed;
-  --text-dim: #666666;
-  --accent: #ff6b35;
-  --accent-glow: rgba(255,107,53,0.15);
-  --font-heading: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --bg: #fafafa;
+  --bg-white: #ffffff;
+  --surface: #f5f5f7;
+  --border: rgba(0,0,0,0.08);
+  --text: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #86868b;
+  --accent: #2563EB;
+  --accent-light: rgba(37,99,235,0.08);
+  --accent-hover: #1d4ed8;
+  --nav-h: 64px;
 }
 
+/* ═══════════════════════════════════════════════
+   Reset & Base
+   ═══════════════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
   overflow-x: hidden;
-  line-height: 1.6;
-  cursor: none;
 }
-
-@media (pointer: coarse) {
-  body { cursor: auto; }
-}
-
-a { color: inherit; text-decoration: none; }
-button { border: none; background: none; color: inherit; font-family: inherit; cursor: none; }
 img { display: block; max-width: 100%; }
-ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; background: none; cursor: pointer; }
+ul, ol { list-style: none; }
 
-::selection {
-  background: var(--accent);
-  color: var(--bg);
+/* Accessibility */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* PRELOADER */
-#preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
+/* ═══════════════════════════════════════════════
+   Preloader
+   ═══════════════════════════════════════════════ */
+.preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
   background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: opacity 0.5s ease;
 }
-
-#preloader.done {
-  transform: translateY(-100%);
-  pointer-events: none;
-}
-
-#preloader-counter {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(3rem, 8vw, 6rem);
-  color: var(--text);
-  line-height: 1;
-}
-
-#preloader-label {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  color: var(--text-dim);
-  margin-top: 1rem;
-  text-transform: uppercase;
-}
-
-/* CUSTOM CURSOR */
-.cursor-dot,
-.cursor-circle {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  border-radius: 50%;
-}
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s;
-}
-
-.cursor-circle {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255,107,53,0.4);
-  transform: translate(-50%, -50%);
-  transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background 0.3s, border-color 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cursor-circle.hover {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(255,107,53,0.6);
-}
-
-.cursor-circle.project-hover {
-  width: 80px;
-  height: 80px;
-  background: var(--accent);
-  border-color: var(--accent);
-  mix-blend-mode: difference;
-}
-
-.cursor-circle .cursor-text {
-  font-family: var(--font-body);
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--bg);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.cursor-circle.project-hover .cursor-text {
-  opacity: 1;
-}
-
-@media (pointer: coarse) {
-  .cursor-dot, .cursor-circle { display: none !important; }
-}
-
-/* SCROLL PROGRESS */
-#scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--accent);
-  z-index: 9998;
-  width: 0%;
-}
-
-/* NAVIGATION */
-#nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 1.5rem 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: border-color 0.3s, background 0.3s;
-  border-bottom: 1px solid transparent;
-}
-
-#nav.scrolled {
-  border-bottom-color: var(--border);
-  background: rgba(5,5,5,0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.nav-logo {
-  font-family: var(--font-heading);
+.preloader.hide { opacity: 0; pointer-events: none; }
+.preloader-mono {
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
-  cursor: none;
+  font-size: 2rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
 }
 
-@media (pointer: coarse) {
-  .nav-logo, .hamburger, button, a { cursor: pointer; }
+/* ═══════════════════════════════════════════════
+   Scroll Progress
+   ═══════════════════════════════════════════════ */
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0;
+  background: var(--accent);
+  z-index: 10001;
+  transition: none;
 }
 
-.hamburger {
-  width: 32px;
-  height: 20px;
-  position: relative;
-  cursor: none;
-  z-index: 1001;
-  background: none;
-  border: none;
-}
-
-.hamburger span {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: var(--text);
-  position: absolute;
-  left: 0;
-  transition: all 0.35s var(--ease-out);
-}
-
-.hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 50%; }
-.hamburger span:nth-child(3) { bottom: 0; }
-
-.hamburger.active span:nth-child(1) {
-  top: 50%;
-  transform: rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.hamburger.active span:nth-child(3) {
-  bottom: 50%;
-  transform: rotate(-45deg);
-}
-
-#nav-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: rgba(5,5,5,0.97);
+/* ═══════════════════════════════════════════════
+   Navigation
+   ═══════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 6rem);
+  background: rgba(250,250,250,0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
+  z-index: 10000;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
 }
-
-#nav-overlay.open {
-  opacity: 1;
-  pointer-events: all;
+.nav.scrolled { border-bottom-color: var(--border); }
+.nav-brand {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
 }
-
 .nav-links {
-  text-align: center;
+  display: flex; align-items: center; gap: 32px;
 }
-
 .nav-links a {
-  display: block;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.4;
-  color: var(--text);
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), color 0.2s;
-  padding: 0.2rem 0;
-}
-
-#nav-overlay.open .nav-links a {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.nav-links a:nth-child(1) { transition-delay: 0.1s; }
-.nav-links a:nth-child(2) { transition-delay: 0.18s; }
-.nav-links a:nth-child(3) { transition-delay: 0.26s; }
-.nav-links a:nth-child(4) { transition-delay: 0.34s; }
-.nav-links a:nth-child(5) { transition-delay: 0.42s; }
-.nav-links a:nth-child(6) { transition-delay: 0.5s; }
-
-.nav-links a:hover { color: var(--accent); }
-
-.nav-links .nav-external {
-  font-size: 0.8rem;
-  font-family: var(--font-body);
+  font-size: 0.875rem;
   font-weight: 400;
-  letter-spacing: 0.1em;
-  color: var(--text-dim);
-  margin-top: 0.5rem;
-  display: inline-block;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
 }
-
-/* MAIN CONTENT */
-#main {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s;
-}
-
-#main.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* HERO */
-#hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 6rem 2rem 4rem;
-  overflow: hidden;
-}
-
-#hero-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-pill {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-dim);
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active { color: var(--accent); }
+.nav-resume {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  padding: 6px 16px;
   border: 1px solid var(--border);
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
-  margin-bottom: 2.5rem;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.hero-pill.anim {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s var(--ease-out) 0.2s;
-}
-
-.hero-name-line {
-  overflow: hidden;
-  display: block;
-}
-
-.hero-name {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(3.5rem, 10vw, 9rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--text);
-}
-
-.hero-name .letter {
-  display: inline-block;
-  transform: translateY(110%);
-  transition: transform 0.6s var(--ease-out);
-}
-
-.hero-name.anim .letter {
-  transform: translateY(0);
-}
-
-.hero-subtitle {
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
-  color: var(--text-dim);
-  margin-top: 1.8rem;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.hero-subtitle.anim {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s var(--ease-out) 0.7s;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2.5rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.hero-buttons.anim {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s var(--ease-out) 0.85s;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85rem;
-  padding: 0.85rem 2rem;
   border-radius: 6px;
-  transition: transform 0.2s, background 0.3s, border-color 0.3s;
-  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease, color 0.2s ease !important;
+}
+.nav-resume:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
 }
 
-.btn-primary-cta {
-  background: var(--accent);
-  color: var(--bg);
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  cursor: pointer;
+  z-index: 10002;
 }
+.hamburger span {
+  display: block; height: 2px; width: 100%;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.btn-primary-cta:hover { background: #e55b27; }
-
-.btn-outline {
-  border: 1px solid rgba(255,255,255,0.15);
+/* Mobile overlay */
+.mobile-nav {
+  position: fixed; inset: 0; z-index: 10001;
+  background: var(--bg-white);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 36px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.mobile-nav.open { opacity: 1; pointer-events: auto; }
+.mobile-nav a {
+  font-size: 1.5rem;
+  font-weight: 500;
   color: var(--text);
-  background: transparent;
+  transition: color 0.2s ease;
 }
+.mobile-nav a:hover { color: var(--accent); }
 
-.btn-outline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-  opacity: 0;
-}
-
-.scroll-indicator.anim {
-  opacity: 1;
-  transition: opacity 0.6s 1.2s;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: var(--text-dim);
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
+/* ═══════════════════════════════════════════════
+   Layout helpers
+   ═══════════════════════════════════════════════ */
+.container {
   width: 100%;
-  height: 100%;
-  background: var(--accent);
-  animation: scrollDown 1.8s var(--ease-smooth) infinite;
-}
-
-@keyframes scrollDown {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
-
-.scroll-label {
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-top: 0.8rem;
-}
-
-/* MARQUEE STRIP */
-.marquee-section {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 1.5rem 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeScroll 40s linear infinite;
-}
-
-.marquee-section:hover .marquee-track {
-  animation-duration: 80s;
-}
-
-.marquee-section:hover .marquee-item {
-  color: var(--text);
-}
-
-.marquee-item {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  white-space: nowrap;
-  padding: 0 1.5rem;
-  transition: color 0.4s;
-}
-
-@keyframes marqueeScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.marquee-track-reverse {
-  animation: marqueeScrollReverse 35s linear infinite;
-}
-
-@keyframes marqueeScrollReverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-
-/* SECTIONS SHARED */
-.section {
-  padding: 8rem 2.5rem;
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
-  position: relative;
+  padding: 0 clamp(1.5rem, 4vw, 6rem);
 }
-
-.section-number {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(4rem, 8vw, 7rem);
-  color: rgba(255,255,255,0.03);
-  position: absolute;
-  top: 5rem;
-  left: 2rem;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
+.section {
+  padding: 120px 0;
 }
-
 .section-label {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
   text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 3rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
 }
-
-.section-label::before {
-  content: '';
-  width: 30px;
-  height: 1px;
-  background: var(--text-dim);
+.section-line {
+  width: 40px; height: 2px;
+  background: var(--accent);
+  margin-bottom: 48px;
 }
+.section-bg-surface { background: var(--surface); }
+.section-bg-white { background: var(--bg-white); }
 
-/* Scroll reveal */
+/* ═══════════════════════════════════════════════
+   Reveal animations
+   ═══════════════════════════════════════════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ABOUT */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.about-text p {
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--text-dim);
-  margin-bottom: 1.5rem;
-}
-
-.about-text p:first-child { color: var(--text); }
-
-.about-photo {
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-}
-
-.about-photo img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
-
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 3.5rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--border);
-}
-
-.stat-number {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 2.5rem;
-  color: var(--text);
-  line-height: 1;
-}
-
-.stat-label {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  margin-top: 0.5rem;
-}
-
-/* EXPERIENCE */
-.exp-card {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 3rem;
-  padding: 2.5rem;
-  border-left: 2px solid var(--accent);
-  background: var(--surface);
-  border-radius: 0 8px 8px 0;
-}
-
-.exp-date {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-}
-
-.exp-company {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--text);
-  margin-bottom: 0.3rem;
-}
-
-.exp-role {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 1rem;
-  color: var(--text);
-  margin-bottom: 0.2rem;
-}
-
-.exp-location {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  margin-bottom: 1rem;
-}
-
-.exp-desc {
-  font-size: 0.9rem;
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--text-dim);
-}
-
-/* PROJECTS */
-.projects-title {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  color: var(--text);
-  margin-bottom: 3rem;
-}
-
-.project-row {
-  border-top: 1px solid var(--border);
-  padding: 1.8rem 0;
-  cursor: none;
-  transition: background 0.3s, padding-left 0.3s;
-}
-
-@media (pointer: coarse) {
-  .project-row { cursor: pointer; }
-}
-
-.project-row:last-child { border-bottom: 1px solid var(--border); }
-
-.project-row:hover {
-  background: var(--surface);
-  padding-left: 1rem;
-}
-
-.project-row:hover .project-name { color: var(--accent); }
-
-.project-header {
-  display: grid;
-  grid-template-columns: 60px 1fr auto;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.project-num {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  font-variant-numeric: tabular-nums;
-}
-
-.project-info { min-width: 0; }
-
-.project-name {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  color: var(--text);
-  transition: color 0.3s;
-  margin-bottom: 0.3rem;
-}
-
-.project-oneliner {
-  font-size: 0.85rem;
-  font-weight: 300;
-  color: var(--text-dim);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.project-toggle {
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 1.5rem;
-  color: var(--text-dim);
-  width: 32px;
-  height: 32px;
+/* ═══════════════════════════════════════════════
+   Hero
+   ═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: transform 0.3s, color 0.3s;
+  padding-top: var(--nav-h);
+}
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  width: 100%;
+}
+.hero-content { flex: 1; }
+.hero-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--surface);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.hero-title .accent { color: var(--accent); }
+.hero-desc {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 14px 28px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+}
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--bg-white);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+/* Hero photo */
+.hero-photo {
   flex-shrink: 0;
 }
+.hero-photo img {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
 
-.project-row.open .project-toggle {
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
+  animation: bounce-down 2s ease infinite;
+}
+.scroll-chevron {
+  width: 20px; height: 20px;
+  border-right: 2px solid var(--text-tertiary);
+  border-bottom: 2px solid var(--text-tertiary);
   transform: rotate(45deg);
-  color: var(--accent);
+}
+@keyframes bounce-down {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
 }
 
-.project-detail {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s var(--ease-out), padding 0.3s;
+/* ═══════════════════════════════════════════════
+   About
+   ═══════════════════════════════════════════════ */
+.about-content {
+  max-width: 720px;
+  margin: 0 auto;
 }
-
-.project-row.open .project-detail {
-  max-height: 400px;
-  padding-top: 1.2rem;
-}
-
-.project-detail-inner {
-  padding-left: calc(60px + 1.5rem);
-}
-
-.project-detail-text {
-  font-size: 0.9rem;
-  font-weight: 300;
+.about-content p {
+  font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--text-dim);
-  margin-bottom: 1rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.about-content p:last-of-type { margin-bottom: 0; }
+.stats-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  margin-top: 56px;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+.stat-divider {
+  width: 1px; height: 40px;
+  background: var(--border);
 }
 
+/* ═══════════════════════════════════════════════
+   Experience
+   ═══════════════════════════════════════════════ */
+.exp-cards { display: flex; flex-direction: column; gap: 24px; }
+.exp-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.exp-company {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.exp-role {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.exp-meta {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  text-align: right;
+  flex-shrink: 0;
+}
+.exp-meta span { display: block; }
+.exp-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-top: 16px;
+}
+
+/* ═══════════════════════════════════════════════
+   Projects
+   ═══════════════════════════════════════════════ */
+.projects-header {
+  margin-bottom: 48px;
+}
+.projects-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.projects-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.project-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.project-card:hover {
+  border-color: rgba(37,99,235,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.project-num {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+.project-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.project-oneliner {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  line-height: 1.5;
+}
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 6px;
+  margin-top: 16px;
 }
-
 .project-tag {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-}
-
-/* SKILLS */
-.skills-section {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 4rem 0;
-  overflow: hidden;
-}
-
-.skills-section .section-label {
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-
-.skills-section .section-label::before { display: none; }
-
-.skills-track {
-  display: flex;
-  width: max-content;
-  gap: 1rem;
-  padding: 0.5rem 0;
-}
-
-.skills-row {
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-}
-
-.skills-row:last-child { margin-bottom: 0; }
-
-.skill-pill {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.8rem;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid var(--border);
-  border-radius: 50px;
-  white-space: nowrap;
-  color: var(--text-dim);
-  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
-  flex-shrink: 0;
-}
-
-.skill-pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 0 15px var(--accent-glow);
-}
-
-/* EDUCATION */
-.edu-card {
-  padding: 2.5rem;
-  border-left: 2px solid var(--accent);
+  color: var(--text-secondary);
   background: var(--surface);
-  border-radius: 0 8px 8px 0;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.project-toggle {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+.project-toggle:hover { color: var(--accent-hover); }
+.project-full {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+.project-full.open {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 16px;
+}
+.project-full p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
 }
 
-.edu-name {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--text);
-  margin-bottom: 0.4rem;
+/* ═══════════════════════════════════════════════
+   Skills
+   ═══════════════════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.skill-cat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
 }
-
-.edu-degree {
-  font-family: var(--font-body);
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-pill {
+  font-size: 0.875rem;
   font-weight: 400;
-  font-size: 1rem;
   color: var(--text);
-  margin-bottom: 0.3rem;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.skill-pill:hover {
+  background: var(--accent-light);
+  border-color: rgba(37,99,235,0.3);
 }
 
+/* ═══════════════════════════════════════════════
+   Education
+   ═══════════════════════════════════════════════ */
+.edu-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  max-width: 640px;
+}
+.edu-school {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.edu-degree {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
 .edu-meta {
   font-size: 0.85rem;
-  color: var(--text-dim);
+  color: var(--text-tertiary);
+  margin-top: 4px;
 }
 
-/* CONTACT */
+/* ═══════════════════════════════════════════════
+   Contact
+   ═══════════════════════════════════════════════ */
 .contact-heading {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(2.5rem, 8vw, 7rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 3rem;
-}
-
-.contact-heading .accent { color: var(--accent); }
-
-.contact-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.contact-card {
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  transition: border-color 0.3s;
-}
-
-.contact-card:hover { border-color: rgba(255,255,255,0.15); }
-
-.contact-card-label {
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 0.6rem;
-}
-
-.contact-card-value {
-  font-size: 0.95rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--text);
-  word-break: break-all;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
 }
-
-.contact-card-value a { transition: color 0.2s; }
-.contact-card-value a:hover { color: var(--accent); }
-
-.contact-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-body);
-  font-weight: 500;
+.contact-sub {
   font-size: 1rem;
-  padding: 1.1rem 2.8rem;
-  background: var(--accent);
-  color: var(--bg);
-  border-radius: 8px;
-  transition: transform 0.2s, background 0.3s;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
 }
-
-.contact-cta:hover { background: #e55b27; }
-
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 3rem 2.5rem;
+.contact-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.contact-item-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.contact-item-value {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.contact-item-value a {
+  transition: color 0.2s ease;
+}
+.contact-item-value a:hover { color: var(--accent); }
+.contact-cta {
   text-align: center;
+  margin-top: 8px;
+}
+.btn-large {
+  font-size: 1rem;
+  padding: 16px 36px;
 }
 
+/* ═══════════════════════════════════════════════
+   Footer
+   ═══════════════════════════════════════════════ */
+.footer {
+  background: var(--bg-white);
+  border-top: 1px solid var(--border);
+  padding: 24px clamp(1.5rem, 4vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
 .footer-links {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  gap: 24px;
 }
-
 .footer-links a {
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  transition: color 0.2s;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
 }
-
 .footer-links a:hover { color: var(--accent); }
 
-.footer-copy {
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  letter-spacing: 0.05em;
-}
-
-/* RESPONSIVE */
+/* ═══════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .about-photo { max-width: 400px; }
-  .exp-card { grid-template-columns: 1fr; gap: 1rem; }
-  .section { padding: 6rem 2rem; }
+  .section { padding: 80px 0; }
+  .projects-grid { gap: 20px; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
 }
 
 @media (max-width: 768px) {
-  #nav { padding: 1rem 1.5rem; }
-  .section { padding: 5rem 1.5rem; }
-  .section-number { font-size: 4rem; top: 3.5rem; left: 1rem; }
-  .hero-name { font-size: clamp(2.8rem, 12vw, 4.5rem); }
-  .contact-heading { font-size: clamp(2rem, 10vw, 4rem); }
-  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .stat-number { font-size: 2rem; }
-  .project-header { grid-template-columns: 40px 1fr auto; gap: 1rem; }
-  .project-detail-inner { padding-left: calc(40px + 1rem); }
-  .project-oneliner { white-space: normal; }
-  .about-photo { max-width: 100%; }
-  .contact-cards { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 32px;
+  }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .hero-photo img { width: 150px; height: 150px; }
+
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .section { padding: 80px 0; }
+  .stats-row { gap: 24px; }
+  .stat-divider { display: none; }
+
+  .exp-header { flex-direction: column; }
+  .exp-meta { text-align: left; }
+
+  .contact-items { gap: 24px; }
 }
 
 @media (max-width: 480px) {
-  .hero-name { font-size: clamp(2.4rem, 14vw, 3.5rem); }
-  .stats-row { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
-  .project-header { grid-template-columns: 30px 1fr auto; gap: 0.8rem; }
-  .project-detail-inner { padding-left: calc(30px + 0.8rem); }
-  .contact-cards { grid-template-columns: 1fr; }
-  .contact-heading { font-size: clamp(1.8rem, 12vw, 3rem); }
+  .hero-title { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .hero-desc { font-size: 1rem; }
+  .btn { padding: 12px 22px; font-size: 0.9rem; }
+  .section { padding: 64px 0; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-title { font-size: 1.5rem; }
+  .contact-heading { font-size: 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<div id="preloader">
-  <div id="preloader-counter">0</div>
-  <div id="preloader-label">Loading Portfolio</div>
+<!-- ═══ Preloader ═══ -->
+<div class="preloader" id="preloader">
+  <span class="preloader-mono">HG</span>
 </div>
 
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-circle" id="cursor-circle"><span class="cursor-text">VIEW</span></div>
+<!-- ═══ Scroll Progress ═══ -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
-<div id="scroll-progress"></div>
-
-<nav id="nav">
-  <a href="#" class="nav-logo magnetic" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">HG</a>
-  <button class="hamburger magnetic" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div id="nav-overlay">
-  <div class="nav-links">
+<!-- ═══ Navigation ═══ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand">Harsh Goyal</a>
+  <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-    <a href="resume.pdf" target="_blank" rel="noopener"><span class="nav-external">Resume ↗</span></a>
+    <a href="resume.pdf" target="_blank" rel="noopener" class="nav-resume">Resume ↗</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ Mobile Nav ═══ -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="resume.pdf" target="_blank" rel="noopener" class="mobile-link">Resume ↗</a>
 </div>
 
-<div id="main">
+<!-- ═══ Main Content ═══ -->
+<main id="mainContent" style="opacity:0; transition: opacity 0.5s ease;">
 
-  <section id="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-content">
-      <div class="hero-pill" id="hero-pill">SOFTWARE DEVELOPER AT FINASTRA</div>
-      <div class="hero-name" id="hero-name">
-        <span class="hero-name-line" id="hero-line-1"></span>
-        <span class="hero-name-line" id="hero-line-2"></span>
-      </div>
-      <p class="hero-subtitle" id="hero-subtitle">Building production systems end-to-end &#x2014; from AI vision to cloud infrastructure.</p>
-      <div class="hero-buttons" id="hero-buttons">
-        <a href="#projects" class="btn btn-primary-cta magnetic">View My Work</a>
-        <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-outline magnetic">Download Resume</a>
-      </div>
-    </div>
-    <div class="scroll-indicator" id="scroll-indicator">
-      <div class="scroll-line"></div>
-      <div class="scroll-label">Scroll</div>
-    </div>
-  </section>
-
-  <div class="marquee-section">
-    <div class="marquee-track" id="marquee-hero">
-      <span class="marquee-item">FULL-STACK DEVELOPER &#xB7; AI &amp; COMPUTER VISION &#xB7; CLOUD INFRASTRUCTURE &#xB7; SaaS ARCHITECT &#xB7; PRODUCTION SYSTEMS &#xB7; DEVOPS &#xB7;</span>
-      <span class="marquee-item">FULL-STACK DEVELOPER &#xB7; AI &amp; COMPUTER VISION &#xB7; CLOUD INFRASTRUCTURE &#xB7; SaaS ARCHITECT &#xB7; PRODUCTION SYSTEMS &#xB7; DEVOPS &#xB7;</span>
-      <span class="marquee-item">FULL-STACK DEVELOPER &#xB7; AI &amp; COMPUTER VISION &#xB7; CLOUD INFRASTRUCTURE &#xB7; SaaS ARCHITECT &#xB7; PRODUCTION SYSTEMS &#xB7; DEVOPS &#xB7;</span>
-      <span class="marquee-item">FULL-STACK DEVELOPER &#xB7; AI &amp; COMPUTER VISION &#xB7; CLOUD INFRASTRUCTURE &#xB7; SaaS ARCHITECT &#xB7; PRODUCTION SYSTEMS &#xB7; DEVOPS &#xB7;</span>
-    </div>
-  </div>
-
-  <section class="section" id="about">
-    <div class="section-number">01</div>
-    <div class="section-label reveal">ABOUT</div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="reveal">I'm a software developer at Finastra, working on GPP (Global PAYplus) — an enterprise payments platform powering banks globally. Started via Xoriant in 2020, onboarded directly by Finastra in 2023. But my real passion is building complete production systems from the ground up.</p>
-        <p class="reveal">Outside of my day job, I've independently designed, developed, and deployed over 13 production-grade platforms &#x2014; from an AI-powered cinema audience counting system with edge-cloud YOLO inference to a full cloud infrastructure dashboard managing all my live services on a self-hosted VPS.</p>
-        <p class="reveal">I believe in owning the entire stack: writing the code, setting up the servers, configuring Nginx, managing SSL certs, and monitoring everything in production. If it needs to exist, I build it.</p>
-        <div class="stats-row">
-          <div class="stat-item reveal">
-            <div class="stat-number" data-count="13">0</div>
-            <div class="stat-label">Production Systems</div>
-          </div>
-          <div class="stat-item reveal">
-            <div class="stat-number" data-count="13">0</div>
-            <div class="stat-label">Services Deployed</div>
-          </div>
-          <div class="stat-item reveal">
-            <div class="stat-number" data-count="7">0</div>
-            <div class="stat-label">Years Coding</div>
-          </div>
+<!-- ═══ Hero ═══ -->
+<section class="hero" style="position:relative;">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge reveal">Software Developer at Finastra</div>
+        <h1 class="hero-title reveal">Building systems that<br>run in <span class="accent">production.</span></h1>
+        <p class="hero-desc reveal">13+ live platforms — from AI vision to cloud infrastructure, ERP to automation.</p>
+        <div class="hero-buttons reveal">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">Download Resume</a>
         </div>
       </div>
-      <div class="about-photo reveal" id="about-photo">
-        <img src="img/profile.jpg" alt="Harsh Goyal" loading="eager" width="500" height="500">
+      <div class="hero-photo reveal">
+        <img src="img/profile.jpg" alt="Harsh Goyal" width="200" height="200">
       </div>
     </div>
-  </section>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-chevron"></div>
+  </div>
+</section>
 
-  <section class="section" id="experience">
-    <div class="section-number">02</div>
-    <div class="section-label reveal">EXPERIENCE</div>
-    <div class="exp-card reveal">
-      <div class="exp-date">Aug 2023 &#x2014; Present</div>
-      <div>
-        <div class="exp-company">FINASTRA (FUNDTECH INDIA LTD)</div>
-        <div class="exp-role">Software Developer &mdash; GPP (Global PAYplus)</div>
-        <div class="exp-location">Full-time &#xB7; Nagpur, India</div>
+<!-- ═══ About ═══ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-label reveal">About</div>
+    <div class="section-line reveal"></div>
+    <div class="about-content">
+      <p class="reveal">I'm a software developer at Finastra, working on GPP (Global PAYplus) — an enterprise payments platform powering banks globally. Started via Xoriant in 2020, onboarded directly by Finastra in 2023.</p>
+      <p class="reveal">Outside of my day job, I've independently designed, developed, and deployed over 13 production-grade platforms — from an AI-powered cinema audience counting system with edge-cloud YOLO inference to a full cloud infrastructure dashboard managing all my live services on a self-hosted VPS.</p>
+      <p class="reveal">I believe in owning the entire stack: writing the code, setting up the servers, configuring Nginx, managing SSL certs, and monitoring everything in production. If it needs to exist, I build it.</p>
+      <div class="stats-row reveal">
+        <div class="stat">
+          <div class="stat-number" data-target="13">0</div>
+          <div class="stat-label">Production Systems</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-number" data-target="13">0</div>
+          <div class="stat-label">Services Deployed</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-number" data-target="7">0</div>
+          <div class="stat-label">Years Coding</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Experience ═══ -->
+<section class="section section-bg-surface" id="experience">
+  <div class="container">
+    <div class="section-label reveal">Experience</div>
+    <div class="section-line reveal"></div>
+    <div class="exp-cards">
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Finastra (Fundtech India Ltd)</div>
+            <div class="exp-role">Software Developer — GPP (Global PAYplus)</div>
+          </div>
+          <div class="exp-meta">
+            <span>Aug 2023 — Present</span>
+            <span>Nagpur, India</span>
+          </div>
+        </div>
         <div class="exp-desc">Onboarded directly by Finastra. Working on GPP (Global PAYplus) — an enterprise payments platform powering banks and financial institutions globally.</div>
       </div>
-    </div>
-    <div class="exp-card reveal">
-      <div class="exp-date">Nov 2020 &#x2014; Aug 2023</div>
-      <div>
-        <div class="exp-company">XORIANT SOLUTIONS</div>
-        <div class="exp-role">Software Developer &mdash; Client: Finastra</div>
-        <div class="exp-location">Full-time &#xB7; Nagpur, India</div>
+
+      <div class="exp-card reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Xoriant Solutions</div>
+            <div class="exp-role">Software Developer — Client: Finastra</div>
+          </div>
+          <div class="exp-meta">
+            <span>Nov 2020 — Aug 2023</span>
+            <span>Nagpur, India</span>
+          </div>
+        </div>
         <div class="exp-desc">Worked on Finastra's enterprise financial technology products as an embedded developer. Contributed to systems powering banking and financial services, leading to a direct hire by Finastra.</div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="projects">
-    <div class="section-number">03</div>
-    <div class="section-label reveal">PROJECTS</div>
-    <div class="projects-title reveal">Systems I've Built &amp; Deployed</div>
-
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/01</span>
-        <div class="project-info">
-          <div class="project-name">DRASHTA AI &#x2014; AI Cinema Occupancy Platform</div>
-          <div class="project-oneliner">Edge-cloud YOLO-based cinema audience counting with automated WhatsApp reports</div>
-        </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">End-to-end AI cinema occupancy platform with edge-cloud architecture. A background capture service at each cinema location feeds frames from 9 RTSP cameras to a cloud YOLO inference engine. Results flow into a PHP analytics backend that generates automated WhatsApp PDF reports to cinema owners. Includes 4 custom desktop tools for dataset collection, image quality filtering, YOLO annotation, and model training.</p>
-          <div class="project-tags">
-            <span class="project-tag">Python</span><span class="project-tag">YOLOv8</span><span class="project-tag">Flask</span><span class="project-tag">PHP</span><span class="project-tag">OpenCV</span><span class="project-tag">PWA</span>
-          </div>
-        </div>
-      </div>
+<!-- ═══ Projects ═══ -->
+<section class="section section-bg-white" id="projects">
+  <div class="container">
+    <div class="section-label reveal">Projects</div>
+    <div class="section-line reveal"></div>
+    <div class="projects-header reveal">
+      <div class="projects-title">Things I've Built</div>
+      <div class="projects-subtitle">Production systems running 24/7, serving real users.</div>
     </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/02</span>
-        <div class="project-info">
-          <div class="project-name">YUKTI ERP &#x2014; Enterprise ERP Gateway</div>
-          <div class="project-oneliner">Oracle-to-cloud ERP bridge with AI insights and customer portal</div>
-        </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Multi-tenant ERP gateway that bridges an on-premise Oracle 11g database to the cloud via a Python sync service. Features a staff dashboard with daily/monthly sales charts, real-time inventory across multiple godowns, general ledger with account hierarchies, e-way bill support, dispatch tracking with photo uploads, and a separate OTP-authenticated customer portal. Integrates AI insights from OpenAI, Gemini, and Anthropic.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">Chart.js</span><span class="project-tag">Python</span><span class="project-tag">Oracle</span><span class="project-tag">MariaDB</span><span class="project-tag">PWA</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="projects-grid">
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/03</span>
-        <div class="project-info">
-          <div class="project-name">DHANLIPI &#x2014; Biometric Attendance &amp; Payroll</div>
-          <div class="project-oneliner">Hikvision biometric sync to auto-calculated payslips with Indian compliance</div>
+      <!-- /01 -->
+      <div class="project-card reveal">
+        <div class="project-num">/01</div>
+        <div class="project-name">DRASHTA AI — AI Cinema Occupancy Platform</div>
+        <div class="project-oneliner">Edge-cloud YOLO-based cinema audience counting with automated WhatsApp reports</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">YOLOv8</span>
+          <span class="project-tag">Flask</span>
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">OpenCV</span>
+          <span class="project-tag">PWA</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Biometric-to-payslip platform connecting Hikvision devices via a Windows sync agent. Auto-calculates complex Indian payroll rules &#x2014; PF, ESI, TDS, overtime, late penalties, sandwich rules, and per-employee overrides. Generates professional landscape PDF payslips in bulk. Features a color-coded attendance grid, revision history, advance/bonus tracking, and WhatsApp first-punch alerts. Offers subscription plans from Trial to Enterprise.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">MySQL</span><span class="project-tag">Biometric</span><span class="project-tag">PDF</span><span class="project-tag">WhatsApp</span><span class="project-tag">PWA</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>End-to-end AI cinema occupancy platform with edge-cloud architecture. A background capture service at each cinema location feeds frames from 9 RTSP cameras to a cloud YOLO inference engine. Results flow into a PHP analytics backend that generates automated WhatsApp PDF reports to cinema owners. Includes 4 custom desktop tools for dataset collection, image quality filtering, YOLO annotation, and model training.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/04</span>
-        <div class="project-info">
-          <div class="project-name">WHATSAPP HUB &#x2014; Business Communication Platform</div>
-          <div class="project-oneliner">Full-stack WhatsApp platform with live chat, bots, and native Android app</div>
+      <!-- /02 -->
+      <div class="project-card reveal">
+        <div class="project-num">/02</div>
+        <div class="project-name">YUKTI ERP — Enterprise ERP Gateway</div>
+        <div class="project-oneliner">Oracle-to-cloud ERP bridge with AI insights and customer portal</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">Chart.js</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Oracle</span>
+          <span class="project-tag">MariaDB</span>
+          <span class="project-tag">PWA</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Full-stack WhatsApp business platform with a live chat interface, contact management with Google Contacts sync, bulk label operations, quick replies with media, and Meta Flows v3.1 quotation generator with PDF templates. Includes multi-app webhook fanout for Yukti ERP integration, QR code/PDF merge utilities, payment reminders, staff role-based access, and a native Android companion app with background polling notifications and inline reply.</p>
-          <div class="project-tags">
-            <span class="project-tag">Kotlin</span><span class="project-tag">PHP</span><span class="project-tag">Meta API</span><span class="project-tag">Android</span><span class="project-tag">FPDF</span><span class="project-tag">PWA</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Multi-tenant ERP gateway that bridges an on-premise Oracle 11g database to the cloud via a Python sync service. Features a staff dashboard with daily/monthly sales charts, real-time inventory across multiple godowns, general ledger with account hierarchies, e-way bill support, dispatch tracking with photo uploads, and a separate OTP-authenticated customer portal. Integrates AI insights from OpenAI, Gemini, and Anthropic.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/05</span>
-        <div class="project-info">
-          <div class="project-name">GOYAL SOLAR CRM &#x2014; Solar Business Platform</div>
-          <div class="project-oneliner">7-stage project pipeline with environmental impact tracking and PDF proposals</div>
+      <!-- /03 -->
+      <div class="project-card reveal">
+        <div class="project-num">/03</div>
+        <div class="project-name">DHANLIPI — Biometric Attendance &amp; Payroll</div>
+        <div class="project-oneliner">Hikvision biometric sync to auto-calculated payslips with Indian compliance</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Biometric</span>
+          <span class="project-tag">PDF</span>
+          <span class="project-tag">WhatsApp</span>
+          <span class="project-tag">PWA</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Unified solar business CRM with Google Sheets client import. Tracks projects through a 7-stage pipeline (Application &#x2192; Sanction &#x2192; Load Extension &#x2192; Meter Testing &#x2192; Installation &#x2192; Subsidy Portal &#x2192; Miscellaneous), logs monthly generation with auto-calculated environmental impact (CO&#x2082; reduced, coal saved, trees planted), manages AMC contracts with expiry alerts, and generates professional multi-page PDF proposals. WhatsApp templates handle generation reports, stage updates, and washing confirmations.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">FPDF</span><span class="project-tag">MySQL</span><span class="project-tag">WhatsApp</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Biometric-to-payslip platform connecting Hikvision devices via a Windows sync agent. Auto-calculates complex Indian payroll rules — PF, ESI, TDS, overtime, late penalties, sandwich rules, and per-employee overrides. Generates professional landscape PDF payslips in bulk. Features a color-coded attendance grid, revision history, advance/bonus tracking, and WhatsApp first-punch alerts. Offers subscription plans from Trial to Enterprise.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/06</span>
-        <div class="project-info">
-          <div class="project-name">DISPATCH &#x2014; Delivery Label &amp; Memo SaaS</div>
-          <div class="project-oneliner">Multi-tenant label generation with e-Invoice import and subscription tiers</div>
+      <!-- /04 -->
+      <div class="project-card reveal">
+        <div class="project-num">/04</div>
+        <div class="project-name">WHATSAPP HUB — Business Communication Platform</div>
+        <div class="project-oneliner">Full-stack WhatsApp platform with live chat, bots, and native Android app</div>
+        <div class="project-tags">
+          <span class="project-tag">Kotlin</span>
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">Meta API</span>
+          <span class="project-tag">Android</span>
+          <span class="project-tag">FPDF</span>
+          <span class="project-tag">PWA</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Multi-tenant SaaS platform for professional delivery label and memo generation. Supports 4 label types &#x2014; thermal (75&#xD7;50mm), colored A4, delivery memos, and courier labels. Features e-Invoice JSON import that auto-fills everything, party &amp; item autocomplete, email &amp; WhatsApp PDF delivery, staff accounts with module-level access, subscription tiers, OTP phone-first registration, and keyboard shortcuts (F1-F4, Ctrl+Enter). Built as an offline-capable PWA.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">FPDF</span><span class="project-tag">MySQL</span><span class="project-tag">WhatsApp</span><span class="project-tag">SaaS</span><span class="project-tag">PWA</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Full-stack WhatsApp business platform with a live chat interface, contact management with Google Contacts sync, bulk label operations, quick replies with media, and Meta Flows v3.1 quotation generator with PDF templates. Includes multi-app webhook fanout for Yukti ERP integration, QR code/PDF merge utilities, payment reminders, staff role-based access, and a native Android companion app with background polling notifications and inline reply.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/07</span>
-        <div class="project-info">
-          <div class="project-name">SETU &#x2014; Data Transformation Platform</div>
-          <div class="project-oneliner">Config-driven vendor CSV/Excel auto-detection and format normalization</div>
+      <!-- /05 -->
+      <div class="project-card reveal">
+        <div class="project-num">/05</div>
+        <div class="project-name">GOYAL SOLAR CRM — Solar Business Platform</div>
+        <div class="project-oneliner">7-stage project pipeline with environmental impact tracking and PDF proposals</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">FPDF</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">WhatsApp</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Config-driven vendor data transformation platform. Automatically detects and reformats CSV/Excel files from various suppliers into a standardized format using FILE_MATCH and STRING_MATCH rules. Handles multi-format parsing (CSV, XLS, XLSX via PhpSpreadsheet), smart date normalization (Excel serials, dd-mm-yy, ddmmyy), per-company isolation, conversion history with download links, and real-time UI console feedback during processing.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">PhpSpreadsheet</span><span class="project-tag">MySQL</span><span class="project-tag">Bootstrap</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Unified solar business CRM with Google Sheets client import. Tracks projects through a 7-stage pipeline (Application → Sanction → Load Extension → Meter Testing → Installation → Subsidy Portal → Miscellaneous), logs monthly generation with auto-calculated environmental impact (CO₂ reduced, coal saved, trees planted), manages AMC contracts with expiry alerts, and generates professional multi-page PDF proposals. WhatsApp templates handle generation reports, stage updates, and washing confirmations.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/08</span>
-        <div class="project-info">
-          <div class="project-name">GS SHOP &#x2014; Solar E-commerce</div>
-          <div class="project-oneliner">Product storefront with WhatsApp admin bot and auto image optimization</div>
+      <!-- /06 -->
+      <div class="project-card reveal">
+        <div class="project-num">/06</div>
+        <div class="project-name">DISPATCH — Delivery Label &amp; Memo SaaS</div>
+        <div class="project-oneliner">Multi-tenant label generation with e-Invoice import and subscription tiers</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">FPDF</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">WhatsApp</span>
+          <span class="project-tag">SaaS</span>
+          <span class="project-tag">PWA</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Self-hosted solar product e-commerce storefront for Goyal Solar Energy. Features a product catalog with search &amp; filter by brand/category, a WhatsApp admin bot for managing products (search, edit price, toggle visibility, upload images), auto image optimization with WebP conversion, SEO engine with Schema.org markup, and a web admin dashboard for bulk management.</p>
-          <div class="project-tags">
-            <span class="project-tag">Vue.js</span><span class="project-tag">PHP</span><span class="project-tag">Tailwind</span><span class="project-tag">WhatsApp Bot</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Multi-tenant SaaS platform for professional delivery label and memo generation. Supports 4 label types — thermal (75×50mm), colored A4, delivery memos, and courier labels. Features e-Invoice JSON import that auto-fills everything, party &amp; item autocomplete, email &amp; WhatsApp PDF delivery, staff accounts with module-level access, subscription tiers, OTP phone-first registration, and keyboard shortcuts (F1-F4, Ctrl+Enter). Built as an offline-capable PWA.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/09</span>
-        <div class="project-info">
-          <div class="project-name">SARVATRA CLOUD &#x2014; VPS Dashboard &amp; Auth Hub</div>
-          <div class="project-oneliner">Self-hosted infrastructure management with unified authentication for 9 apps</div>
+      <!-- /07 -->
+      <div class="project-card reveal">
+        <div class="project-num">/07</div>
+        <div class="project-name">SETU — Data Transformation Platform</div>
+        <div class="project-oneliner">Config-driven vendor CSV/Excel auto-detection and format normalization</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">PhpSpreadsheet</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Bootstrap</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Self-built VPS management dashboard and unified auth hub. The control panel monitors real-time CPU/RAM/disk with 5-second auto-refresh, manages Python &amp; PHP projects with one-click deploy, handles Nginx vhost CRUD (proxy, PHP, static), systemd service lifecycle with live logs, and MariaDB browsing. The auth hub provides centralized login, multi-company support, app registry, and a User &#xD7; App &#xD7; Company &#xD7; Role access matrix consumed by all 9 registered apps.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">Nginx</span><span class="project-tag">systemd</span><span class="project-tag">Linux</span><span class="project-tag">MariaDB</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Config-driven vendor data transformation platform. Automatically detects and reformats CSV/Excel files from various suppliers into a standardized format using FILE_MATCH and STRING_MATCH rules. Handles multi-format parsing (CSV, XLS, XLSX via PhpSpreadsheet), smart date normalization (Excel serials, dd-mm-yy, ddmmyy), per-company isolation, conversion history with download links, and real-time UI console feedback during processing.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/10</span>
-        <div class="project-info">
-          <div class="project-name">SAARANSH &#x2014; Financial Analytics</div>
-          <div class="project-oneliner">Financial data aggregation and analysis for business insights</div>
+      <!-- /08 -->
+      <div class="project-card reveal">
+        <div class="project-num">/08</div>
+        <div class="project-name">GS SHOP — Solar E-commerce</div>
+        <div class="project-oneliner">Product storefront with WhatsApp admin bot and auto image optimization</div>
+        <div class="project-tags">
+          <span class="project-tag">Vue.js</span>
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">Tailwind</span>
+          <span class="project-tag">WhatsApp Bot</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Financial data aggregation and analysis platform. Consolidates financial information from multiple sources, processes and normalizes datasets, and generates actionable business insights with visualizations for informed decision-making.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">MySQL</span><span class="project-tag">Analytics</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Self-hosted solar product e-commerce storefront for Goyal Solar Energy. Features a product catalog with search &amp; filter by brand/category, a WhatsApp admin bot for managing products (search, edit price, toggle visibility, upload images), auto image optimization with WebP conversion, SEO engine with Schema.org markup, and a web admin dashboard for bulk management.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/11</span>
-        <div class="project-info">
-          <div class="project-name">BLAZE DOWNLOADER &#x2014; Desktop Download Manager</div>
-          <div class="project-oneliner">IDM-style parallel downloads with dynamic segmentation and smart resume</div>
+      <!-- /09 -->
+      <div class="project-card reveal">
+        <div class="project-num">/09</div>
+        <div class="project-name">SARVATRA CLOUD — VPS Dashboard &amp; Auth Hub</div>
+        <div class="project-oneliner">Self-hosted infrastructure management with unified authentication for 9 apps</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">Nginx</span>
+          <span class="project-tag">systemd</span>
+          <span class="project-tag">Linux</span>
+          <span class="project-tag">MariaDB</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">IDM-style desktop download manager with dynamic segmentation that steals work from slow segments to keep all connections busy. Supports up to 32 parallel connections, smart resume from exact byte positions (survives crashes), priority-based queue, auto-categorization, speed limiting via token-bucket rate limiter, clipboard monitoring, scheduling with day-of-week support, and proxy/auth support. Modern dark UI with real-time segment visualization.</p>
-          <div class="project-tags">
-            <span class="project-tag">Python</span><span class="project-tag">CustomTkinter</span><span class="project-tag">Threading</span><span class="project-tag">Cross-platform</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Self-built VPS management dashboard and unified auth hub. The control panel monitors real-time CPU/RAM/disk with 5-second auto-refresh, manages Python &amp; PHP projects with one-click deploy, handles Nginx vhost CRUD (proxy, PHP, static), systemd service lifecycle with live logs, and MariaDB browsing. The auth hub provides centralized login, multi-company support, app registry, and a User × App × Company × Role access matrix consumed by all 9 registered apps.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/12</span>
-        <div class="project-info">
-          <div class="project-name">WA HUB APP &#x2014; Android Companion</div>
-          <div class="project-oneliner">Native Kotlin app with background notifications surviving reboot</div>
+      <!-- /10 -->
+      <div class="project-card reveal">
+        <div class="project-num">/10</div>
+        <div class="project-name">SAARANSH — Financial Analytics</div>
+        <div class="project-oneliner">Financial data aggregation and analysis for business insights</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Analytics</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Native Android companion for WhatsApp Hub with background notifications that work even after app kill or device reboot. Uses a foreground service polling the API every 10 seconds, supports inline reply from the notification shade, media capture (camera, files, voice), auto-update with download prompts, and crash logging with copy-to-clipboard reports. Built with Kotlin, targeting Android 7.0&#x2013;14.</p>
-          <div class="project-tags">
-            <span class="project-tag">Kotlin</span><span class="project-tag">Android</span><span class="project-tag">Gradle</span><span class="project-tag">GitHub Actions</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Financial data aggregation and analysis platform. Consolidates financial information from multiple sources, processes and normalizes datasets, and generates actionable business insights with visualizations for informed decision-making.</p>
         </div>
       </div>
-    </div>
 
-    <div class="project-row reveal" data-project>
-      <div class="project-header">
-        <span class="project-num">/13</span>
-        <div class="project-info">
-          <div class="project-name">EARTHSOL &#x2014; Corporate Website</div>
-          <div class="project-oneliner">Dynamic product gallery website with Bootstrap 5 and PHP backend</div>
+      <!-- /11 -->
+      <div class="project-card reveal">
+        <div class="project-num">/11</div>
+        <div class="project-name">BLAZE DOWNLOADER — Desktop Download Manager</div>
+        <div class="project-oneliner">IDM-style parallel downloads with dynamic segmentation and smart resume</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">CustomTkinter</span>
+          <span class="project-tag">Threading</span>
+          <span class="project-tag">Cross-platform</span>
         </div>
-        <span class="project-toggle">+</span>
-      </div>
-      <div class="project-detail">
-        <div class="project-detail-inner">
-          <p class="project-detail-text">Corporate website for Earth Sol with a dynamic product gallery that auto-loads images from the assets directory. Clean, responsive design built on Bootstrap 5 with PHP backend and MySQL database integration for product management.</p>
-          <div class="project-tags">
-            <span class="project-tag">PHP</span><span class="project-tag">Bootstrap 5</span><span class="project-tag">MySQL</span>
-          </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>IDM-style desktop download manager with dynamic segmentation that steals work from slow segments to keep all connections busy. Supports up to 32 parallel connections, smart resume from exact byte positions (survives crashes), priority-based queue, auto-categorization, speed limiting via token-bucket rate limiter, clipboard monitoring, scheduling with day-of-week support, and proxy/auth support. Modern dark UI with real-time segment visualization.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="skills-section" id="skills">
-    <div class="section-label reveal" style="padding:0 2.5rem;">SKILLS</div>
-    <div class="skills-row">
-      <div class="skills-track marquee-track" id="skills-track-1"></div>
-    </div>
-    <div class="skills-row">
-      <div class="skills-track marquee-track-reverse" id="skills-track-2"></div>
-    </div>
-  </section>
+      <!-- /12 -->
+      <div class="project-card reveal">
+        <div class="project-num">/12</div>
+        <div class="project-name">WA HUB APP — Android Companion</div>
+        <div class="project-oneliner">Native Kotlin app with background notifications surviving reboot</div>
+        <div class="project-tags">
+          <span class="project-tag">Kotlin</span>
+          <span class="project-tag">Android</span>
+          <span class="project-tag">Gradle</span>
+          <span class="project-tag">GitHub Actions</span>
+        </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Native Android companion for WhatsApp Hub with background notifications that work even after app kill or device reboot. Uses a foreground service polling the API every 10 seconds, supports inline reply from the notification shade, media capture (camera, files, voice), auto-update with download prompts, and crash logging with copy-to-clipboard reports. Built with Kotlin, targeting Android 7.0–14.</p>
+        </div>
+      </div>
 
-  <section class="section" id="education">
-    <div class="section-number">05</div>
-    <div class="section-label reveal">EDUCATION</div>
+      <!-- /13 -->
+      <div class="project-card reveal">
+        <div class="project-num">/13</div>
+        <div class="project-name">EARTHSOL — Corporate Website</div>
+        <div class="project-oneliner">Dynamic product gallery website with Bootstrap 5 and PHP backend</div>
+        <div class="project-tags">
+          <span class="project-tag">PHP</span>
+          <span class="project-tag">Bootstrap 5</span>
+          <span class="project-tag">MySQL</span>
+        </div>
+        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
+        <div class="project-full">
+          <p>Corporate website for Earthsol with a dynamic product gallery that auto-loads images from the assets directory. Clean, responsive design built on Bootstrap 5 with PHP backend and MySQL database integration for product management.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Skills ═══ -->
+<section class="section section-bg-surface" id="skills">
+  <div class="container">
+    <div class="section-label reveal">Skills</div>
+    <div class="section-line reveal"></div>
+    <div class="skills-grid">
+
+      <div class="reveal">
+        <div class="skill-cat-label">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">PHP</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Kotlin</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">SQL</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-cat-label">AI &amp; ML</div>
+        <div class="skill-pills">
+          <span class="skill-pill">YOLO</span>
+          <span class="skill-pill">OpenCV</span>
+          <span class="skill-pill">Flask</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-cat-label">Frontend</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Vue.js</span>
+          <span class="skill-pill">Tailwind</span>
+          <span class="skill-pill">Bootstrap</span>
+          <span class="skill-pill">Chart.js</span>
+          <span class="skill-pill">CustomTkinter</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-cat-label">Backend &amp; Cloud</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Nginx</span>
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">systemd</span>
+          <span class="skill-pill">Git</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-cat-label">Databases</div>
+        <div class="skill-pills">
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">MariaDB</span>
+          <span class="skill-pill">Oracle</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="skill-cat-label">Mobile &amp; APIs</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Android</span>
+          <span class="skill-pill">WhatsApp API</span>
+          <span class="skill-pill">FPDF</span>
+          <span class="skill-pill">Meta API</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Education ═══ -->
+<section class="section section-bg-white" id="education">
+  <div class="container">
+    <div class="section-label reveal">Education</div>
+    <div class="section-line reveal"></div>
     <div class="edu-card reveal">
-      <div class="edu-name">Shri Ramdeobaba College of Engineering and Management</div>
+      <div class="edu-school">Shri Ramdeobaba College of Engineering and Management</div>
       <div class="edu-degree">B.E. in Computer Science</div>
-      <div class="edu-meta">2016 &#x2014; 2020 &#xB7; Nagpur, India</div>
+      <div class="edu-meta">2016 — 2020 · Nagpur, India</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="contact">
-    <div class="section-number">06</div>
-    <div class="section-label reveal">CONTACT</div>
-    <div class="contact-heading reveal">
-      LET'S BUILD<br><span class="accent">SOMETHING.</span>
+<!-- ═══ Contact ═══ -->
+<section class="section section-bg-surface" id="contact">
+  <div class="container">
+    <div class="contact-heading reveal">Get in touch</div>
+    <div class="contact-sub reveal">Have a project in mind or just want to say hello?</div>
+
+    <div class="contact-items reveal">
+      <div>
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value"><a href="mailto:goyalharsh07@gmail.com">goyalharsh07@gmail.com</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value"><a href="tel:+917588800097">+91 7588800097</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">GitHub</div>
+        <div class="contact-item-value"><a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">github.com/harshanilgoyal</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">LinkedIn</div>
+        <div class="contact-item-value"><a href="https://linkedin.com/in/harshanilgoyal" target="_blank" rel="noopener">linkedin.com/in/harshanilgoyal</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Location</div>
+        <div class="contact-item-value">Nagpur, India</div>
+      </div>
     </div>
-    <div class="contact-cards reveal">
-      <div class="contact-card">
-        <div class="contact-card-label">Email</div>
-        <div class="contact-card-value"><a href="mailto:goyalharsh07@gmail.com">goyalharsh07@gmail.com</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-label">Phone</div>
-        <div class="contact-card-value"><a href="tel:+917588800097">+91 7588800097</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-label">GitHub</div>
-        <div class="contact-card-value"><a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">harshanilgoyal</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-label">LinkedIn</div>
-        <div class="contact-card-value"><a href="https://www.linkedin.com/in/harshanilgoyal/" target="_blank" rel="noopener">harshanilgoyal</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-card-label">Location</div>
-        <div class="contact-card-value">Nagpur, India</div>
-      </div>
+
+    <div class="contact-cta reveal">
+      <a href="mailto:goyalharsh07@gmail.com" class="btn btn-primary btn-large">Send an Email →</a>
     </div>
-    <a href="mailto:goyalharsh07@gmail.com" class="contact-cta magnetic reveal">Say Hello &#x2709;&#xFE0F;</a>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    <div class="footer-links">
-      <a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/harshanilgoyal/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:goyalharsh07@gmail.com">Email</a>
-      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </div>
-    <div class="footer-copy">&#xA9; 2026 Harsh Goyal</div>
-  </footer>
+</main>
 
-</div>
+<!-- ═══ Footer ═══ -->
+<footer class="footer">
+  <div class="footer-copy">© 2026 Harsh Goyal</div>
+  <div class="footer-links">
+    <a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/harshanilgoyal" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:goyalharsh07@gmail.com">Email</a>
+  </div>
+</footer>
 
+<!-- ═══════════════════════════════════════════════
+     JavaScript
+     ═══════════════════════════════════════════════ -->
 <script>
 (function() {
   'use strict';
 
-  var isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+  /* ── Preloader ── */
+  window.addEventListener('load', function() {
+    var pre = document.getElementById('preloader');
+    var main = document.getElementById('mainContent');
+    setTimeout(function() {
+      pre.classList.add('hide');
+      main.style.opacity = '1';
+      setTimeout(function() { pre.style.display = 'none'; }, 500);
+    }, 800);
+  });
 
-  /* PRELOADER */
-  var preloader = document.getElementById('preloader');
-  var counterEl = document.getElementById('preloader-counter');
-  var mainEl = document.getElementById('main');
-  var preloaderProgress = 0;
-
-  function animatePreloader() {
-    var remaining = 100 - preloaderProgress;
-    var increment = remaining < 15 ? 0.4 : remaining < 30 ? 0.8 : remaining < 50 ? 1.5 : 2.5;
-    preloaderProgress = Math.min(100, preloaderProgress + increment);
-    counterEl.textContent = Math.floor(preloaderProgress);
-    if (preloaderProgress < 100) {
-      requestAnimationFrame(animatePreloader);
-    } else {
-      setTimeout(finishPreloader, 300);
-    }
+  /* ── Scroll Progress ── */
+  var progressBar = document.getElementById('scrollProgress');
+  function updateProgress() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
   }
 
-  function finishPreloader() {
-    preloader.classList.add('done');
-    mainEl.classList.add('visible');
-    setTimeout(triggerHeroAnimations, 400);
-  }
-
-  function triggerHeroAnimations() {
-    document.getElementById('hero-pill').classList.add('anim');
-    document.getElementById('hero-name').classList.add('anim');
-    document.getElementById('hero-subtitle').classList.add('anim');
-    document.getElementById('hero-buttons').classList.add('anim');
-    document.getElementById('scroll-indicator').classList.add('anim');
-  }
-
-  /* HERO NAME LETTER WRAP */
-  function wrapLetters(text, container) {
-    for (var i = 0; i < text.length; i++) {
-      var span = document.createElement('span');
-      span.className = 'letter';
-      span.textContent = text[i];
-      span.style.transitionDelay = (i * 0.04 + 0.3) + 's';
-      container.appendChild(span);
-    }
-  }
-
-  wrapLetters('HARSH', document.getElementById('hero-line-1'));
-  wrapLetters('GOYAL', document.getElementById('hero-line-2'));
-
-  /* SKILLS MARQUEE BUILD */
-  var skills1 = ['Python','PHP','JavaScript','Kotlin','Java','SQL','YOLO','Flask','OpenCV','Nginx','Vue.js','Chart.js'];
-  var skills2 = ['MySQL','MariaDB','Oracle','Linux','systemd','Tailwind','Bootstrap','Android','Git','CustomTkinter','WhatsApp API','FPDF'];
-
-  function buildSkillTrack(skills, container) {
-    for (var r = 0; r < 4; r++) {
-      for (var i = 0; i < skills.length; i++) {
-        var pill = document.createElement('span');
-        pill.className = 'skill-pill';
-        pill.textContent = skills[i];
-        container.appendChild(pill);
-      }
-    }
-  }
-
-  buildSkillTrack(skills1, document.getElementById('skills-track-1'));
-  buildSkillTrack(skills2, document.getElementById('skills-track-2'));
-
-  /* CUSTOM CURSOR */
-  if (!isTouchDevice) {
-    var dot = document.getElementById('cursor-dot');
-    var circle = document.getElementById('cursor-circle');
-    var mx = -100, my = -100, cx = -100, cy = -100;
-
-    document.addEventListener('mousemove', function(e) {
-      mx = e.clientX;
-      my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top = my + 'px';
-    });
-
-    function animateCursor() {
-      cx += (mx - cx) * 0.15;
-      cy += (my - cy) * 0.15;
-      circle.style.left = cx + 'px';
-      circle.style.top = cy + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    document.addEventListener('mouseover', function(e) {
-      var el = e.target.closest('a, button, .magnetic');
-      var proj = e.target.closest('[data-project]');
-      if (proj && !el) {
-        circle.classList.add('project-hover');
-        circle.classList.remove('hover');
-        dot.style.opacity = '0';
-      } else if (el) {
-        circle.classList.add('hover');
-        circle.classList.remove('project-hover');
-        dot.style.opacity = '0';
-      }
-    });
-
-    document.addEventListener('mouseout', function(e) {
-      var el = e.target.closest('a, button, .magnetic');
-      var proj = e.target.closest('[data-project]');
-      if (proj || el) {
-        circle.classList.remove('hover', 'project-hover');
-        dot.style.opacity = '1';
-      }
-    });
-  } else {
-    document.body.style.cursor = 'auto';
-    document.getElementById('cursor-dot').style.display = 'none';
-    document.getElementById('cursor-circle').style.display = 'none';
-  }
-
-  /* SCROLL PROGRESS */
-  var progressBar = document.getElementById('scroll-progress');
-
-  function updateScrollProgress() {
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
-    progressBar.style.width = p + '%';
-  }
-
-  /* NAV SCROLL STATE */
+  /* ── Nav scroll state ── */
   var nav = document.getElementById('nav');
-
-  function updateNavState() {
-    if (window.scrollY > 100) {
+  function updateNav() {
+    if (window.scrollY > 10) {
       nav.classList.add('scrolled');
     } else {
       nav.classList.remove('scrolled');
     }
   }
 
-  window.addEventListener('scroll', function() {
-    updateScrollProgress();
-    updateNavState();
-  }, { passive: true });
-
-  /* HAMBURGER & NAV OVERLAY */
-  var hamburger = document.getElementById('hamburger');
-  var overlay = document.getElementById('nav-overlay');
-  var navLinks = overlay.querySelectorAll('a');
-
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('active');
-    overlay.classList.toggle('open');
-    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
-  });
-
-  for (var nl = 0; nl < navLinks.length; nl++) {
-    navLinks[nl].addEventListener('click', function() {
-      hamburger.classList.remove('active');
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
+  /* ── Active section highlighting ── */
+  var sections = document.querySelectorAll('section[id]');
+  var navAnchors = document.querySelectorAll('.nav-links a:not(.nav-resume)');
+  function updateActiveLink() {
+    var scrollPos = window.scrollY + 120;
+    sections.forEach(function(sec) {
+      var top = sec.offsetTop;
+      var bottom = top + sec.offsetHeight;
+      var id = sec.getAttribute('id');
+      navAnchors.forEach(function(a) {
+        if (a.getAttribute('href') === '#' + id) {
+          if (scrollPos >= top && scrollPos < bottom) {
+            a.classList.add('active');
+          } else {
+            a.classList.remove('active');
+          }
+        }
+      });
     });
   }
 
-  /* SCROLL REVEAL */
+  /* ── Combined scroll handler ── */
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        updateProgress();
+        updateNav();
+        updateActiveLink();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ── Hamburger ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Reveal on scroll ── */
   var reveals = document.querySelectorAll('.reveal');
   var revealObserver = new IntersectionObserver(function(entries) {
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].isIntersecting) {
-        var entry = entries[i];
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        /* Stagger children within the same parent */
         var parent = entry.target.parentElement;
-        var siblings = parent.querySelectorAll(':scope > .reveal');
-        var idx = 0;
-        for (var j = 0; j < siblings.length; j++) {
-          if (siblings[j] === entry.target) { idx = j; break; }
-        }
-        entry.target.style.transitionDelay = (idx * 0.08) + 's';
+        var siblings = parent.querySelectorAll('.reveal');
+        var idx = Array.prototype.indexOf.call(siblings, entry.target);
+        entry.target.style.transitionDelay = (idx * 0.06) + 's';
         entry.target.classList.add('visible');
         revealObserver.unobserve(entry.target);
       }
-    }
+    });
   }, { threshold: 0.1 });
+  reveals.forEach(function(el) { revealObserver.observe(el); });
 
-  for (var ri = 0; ri < reveals.length; ri++) { revealObserver.observe(reveals[ri]); }
-
-  /* STAT COUNTER */
-  var statNumbers = document.querySelectorAll('.stat-number[data-count]');
-  var statObserver = new IntersectionObserver(function(entries) {
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].isIntersecting) {
-        var el = entries[i].target;
-        var target = parseInt(el.dataset.count, 10);
-        var startTime = performance.now();
-        var duration = 1200;
-        (function(el, target, startTime) {
-          function step(now) {
-            var elapsed = now - startTime;
+  /* ── Stats counter ── */
+  var statNumbers = document.querySelectorAll('.stat-number[data-target]');
+  var statsAnimated = false;
+  var statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !statsAnimated) {
+        statsAnimated = true;
+        statNumbers.forEach(function(el) {
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          var duration = 1200;
+          var start = performance.now();
+          function tick(now) {
+            var elapsed = now - start;
             var progress = Math.min(elapsed / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.floor(eased * target) + '+';
-            if (progress < 1) requestAnimationFrame(step);
+            /* ease out quad */
+            var eased = 1 - (1 - progress) * (1 - progress);
+            el.textContent = Math.round(eased * target) + '+';
+            if (progress < 1) requestAnimationFrame(tick);
           }
-          requestAnimationFrame(step);
-        })(el, target, startTime);
-        statObserver.unobserve(el);
+          requestAnimationFrame(tick);
+        });
+        statsObserver.disconnect();
       }
-    }
-  }, { threshold: 0.5 });
-
-  for (var si = 0; si < statNumbers.length; si++) { statObserver.observe(statNumbers[si]); }
-
-  /* PROJECT EXPAND/COLLAPSE */
-  var projectRows = document.querySelectorAll('[data-project]');
-  for (var pi = 0; pi < projectRows.length; pi++) {
-    projectRows[pi].addEventListener('click', function() {
-      var wasOpen = this.classList.contains('open');
-      var allRows = document.querySelectorAll('[data-project].open');
-      for (var k = 0; k < allRows.length; k++) { allRows[k].classList.remove('open'); }
-      if (!wasOpen) this.classList.add('open');
     });
-  }
-
-  /* MAGNETIC EFFECT */
-  if (!isTouchDevice) {
-    var magnetics = document.querySelectorAll('.magnetic');
-    for (var mi = 0; mi < magnetics.length; mi++) {
-      magnetics[mi].addEventListener('mousemove', function(e) {
-        var rect = this.getBoundingClientRect();
-        var x = e.clientX - rect.left - rect.width / 2;
-        var y = e.clientY - rect.top - rect.height / 2;
-        this.style.transform = 'translate(' + (x * 0.2) + 'px,' + (y * 0.2) + 'px)';
-      });
-      magnetics[mi].addEventListener('mouseleave', function() {
-        var self = this;
-        self.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-        self.style.transform = '';
-        setTimeout(function() { self.style.transition = ''; }, 400);
-      });
-    }
-  }
-
-  /* INTERACTIVE CANVAS */
-  var canvas = document.getElementById('hero-canvas');
-  var ctx = canvas.getContext('2d');
-  var GRID = 40;
-  var DOT_R = 1;
-  var M_RAD = 100;
-  var MAX_DISP = 15;
-  var LERP = 0.08;
-  var dots = [];
-  var cmx = -9999, cmy = -9999;
-  var cW, cH;
-
-  function initCanvas() {
-    var dpr = window.devicePixelRatio || 1;
-    var rect = canvas.parentElement.getBoundingClientRect();
-    cW = rect.width;
-    cH = rect.height;
-    canvas.width = cW * dpr;
-    canvas.height = cH * dpr;
-    canvas.style.width = cW + 'px';
-    canvas.style.height = cH + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    dots = [];
-    for (var x = GRID; x < cW; x += GRID) {
-      for (var y = GRID; y < cH; y += GRID) {
-        dots.push({ ox: x, oy: y, x: x, y: y, alpha: 0.15, r: DOT_R, phase: Math.random() * Math.PI * 2 });
-      }
-    }
-  }
-
-  if (!isTouchDevice) {
-    canvas.addEventListener('mousemove', function(e) {
-      var rect = canvas.getBoundingClientRect();
-      cmx = e.clientX - rect.left;
-      cmy = e.clientY - rect.top;
-    });
-    canvas.addEventListener('mouseleave', function() { cmx = -9999; cmy = -9999; });
-  }
-
-  var driftT = 0;
-
-  function drawCanvas() {
-    ctx.clearRect(0, 0, cW, cH);
-    driftT += 0.005;
-
-    for (var i = 0; i < dots.length; i++) {
-      var d = dots[i];
-      if (isTouchDevice) {
-        var tx = d.ox + Math.sin(driftT + d.phase) * 5;
-        var ty = d.oy + Math.cos(driftT * 0.7 + d.phase) * 5;
-        d.x += (tx - d.x) * 0.02;
-        d.y += (ty - d.y) * 0.02;
-        d.alpha = 0.15;
-        d.r = DOT_R;
-      } else {
-        var dx = cmx - d.ox;
-        var dy = cmy - d.oy;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < M_RAD) {
-          var force = 1 - dist / M_RAD;
-          var angle = Math.atan2(dy, dx);
-          d.x += ((d.ox - Math.cos(angle) * force * MAX_DISP) - d.x) * 0.15;
-          d.y += ((d.oy - Math.sin(angle) * force * MAX_DISP) - d.y) * 0.15;
-          d.alpha += ((0.15 + force * 0.6) - d.alpha) * 0.15;
-          d.r += ((DOT_R + force * 1.5) - d.r) * 0.15;
-        } else {
-          d.x += (d.ox - d.x) * LERP;
-          d.y += (d.oy - d.y) * LERP;
-          d.alpha += (0.15 - d.alpha) * LERP;
-          d.r += (DOT_R - d.r) * LERP;
-        }
-      }
-      ctx.beginPath();
-      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,' + d.alpha + ')';
-      ctx.fill();
-    }
-    requestAnimationFrame(drawCanvas);
-  }
-
-  /* ABOUT PHOTO PARALLAX */
-  var aboutPhoto = document.getElementById('about-photo');
-  function updateParallax() {
-    if (aboutPhoto && !isTouchDevice) {
-      var rect = aboutPhoto.getBoundingClientRect();
-      var viewH = window.innerHeight;
-      var center = rect.top + rect.height / 2;
-      var offset = ((center - viewH / 2) / viewH) * -20;
-      aboutPhoto.style.transform = 'translateY(' + offset + 'px)';
-    }
-  }
-  window.addEventListener('scroll', updateParallax, { passive: true });
-
-  /* INIT */
-  document.addEventListener('DOMContentLoaded', function() {
-    requestAnimationFrame(animatePreloader);
-  });
-
-  window.addEventListener('load', function() {
-    initCanvas();
-    drawCanvas();
-  });
-
-  window.addEventListener('resize', function() {
-    initCanvas();
-  });
+  }, { threshold: 0.3 });
+  statNumbers.forEach(function(el) { statsObserver.observe(el); });
 
 })();
+
+/* ── Project expand/collapse ── */
+function toggleProject(btn) {
+  var full = btn.nextElementSibling;
+  var isOpen = full.classList.contains('open');
+  full.classList.toggle('open');
+  btn.textContent = isOpen ? 'Read more +' : 'Show less −';
+}
 </script>
 </body>
 </html>
