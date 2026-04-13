@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Harsh Goyal — Software Developer</title>
 <meta name="description" content="Harsh Goyal — Software Developer at Finastra. Builder of 13+ production systems spanning AI vision, cloud infrastructure, ERP, and automation.">
-<meta name="theme-color" content="#fafafa">
+<meta name="theme-color" content="#1a1a2e">
 <meta property="og:title" content="Harsh Goyal — Software Developer">
 <meta property="og:description" content="Software Developer at Finastra. Builder of 13+ production systems spanning AI vision, cloud infrastructure, ERP, and automation.">
 <meta property="og:image" content="https://harshanilgoyal.github.io/img/profile.jpg">
@@ -17,1327 +17,603 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════
-   Variables
-   ═══════════════════════════════════════════════ */
-:root {
-  --bg: #fafafa;
-  --bg-white: #ffffff;
-  --surface: #f5f5f7;
-  --border: rgba(0,0,0,0.08);
-  --text: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-tertiary: #86868b;
-  --accent: #2563EB;
-  --accent-light: rgba(37,99,235,0.08);
-  --accent-hover: #1d4ed8;
-  --nav-h: 64px;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f9fa;
+  --bg-white:#ffffff;
+  --sidebar-bg:#1a1a2e;
+  --sidebar-text:#c8ccd4;
+  --sidebar-active:#ffffff;
+  --sidebar-accent:#4f8cf7;
+  --border:rgba(0,0,0,0.08);
+  --text:#1d1d1f;
+  --text-secondary:#6e6e73;
+  --text-tertiary:#86868b;
+  --accent:#4f8cf7;
+  --accent-light:rgba(79,140,247,0.08);
+  --accent-hover:#3b7aed;
+  --sidebar-w:280px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
+
+/* Focus */
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+a{color:inherit;text-decoration:none}
+
+/* ══ SIDEBAR ══ */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);
+  background:var(--sidebar-bg);
+  display:flex;flex-direction:column;
+  padding:32px 24px;
+  z-index:100;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.sidebar__profile{text-align:center}
+.sidebar__photo{
+  width:130px;height:130px;border-radius:50%;
+  object-fit:cover;border:3px solid #fff;
+  display:block;margin:0 auto 16px;
+}
+.sidebar__name{font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:4px}
+.sidebar__title{font-weight:400;font-size:.8rem;color:var(--sidebar-text);margin-bottom:0}
+.sidebar__sep{height:1px;background:rgba(255,255,255,.1);margin:24px 0;border:none}
+
+.sidebar__nav{flex:1;display:flex;flex-direction:column;gap:2px}
+.sidebar__link{
+  display:block;padding:10px 16px;border-radius:8px;
+  font-weight:500;font-size:.85rem;color:var(--sidebar-text);
+  transition:background .2s,color .2s;
+  border-left:3px solid transparent;
+}
+.sidebar__link:hover{background:rgba(255,255,255,.06);color:#fff}
+.sidebar__link.active{
+  background:rgba(79,140,247,.15);color:#fff;
+  border-left-color:var(--sidebar-accent);
 }
 
-/* ═══════════════════════════════════════════════
-   Reset & Base
-   ═══════════════════════════════════════════════ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; border: none; background: none; cursor: pointer; }
-ul, ol { list-style: none; }
+.sidebar__bottom{margin-top:auto}
+.sidebar__icons{display:flex;justify-content:center;gap:16px;margin-bottom:12px}
+.sidebar__icons a{display:inline-flex;align-items:center;justify-content:center;color:var(--sidebar-text);transition:color .2s}
+.sidebar__icons a:hover{color:#fff}
+.sidebar__icons svg{width:18px;height:18px;fill:currentColor}
+.sidebar__copy{font-size:.7rem;color:var(--sidebar-text);text-align:center}
 
-/* Accessibility */
-a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 4px;
+/* Mobile top bar */
+.topbar{
+  display:none;position:fixed;top:0;left:0;right:0;height:60px;
+  background:var(--sidebar-bg);z-index:110;
+  align-items:center;justify-content:space-between;
+  padding:0 16px;
 }
+.topbar__burger{background:none;border:none;cursor:pointer;padding:4px;color:var(--sidebar-text)}
+.topbar__burger svg{width:24px;height:24px;fill:currentColor}
+.topbar__name{font-weight:700;font-size:1rem;color:#fff}
+.topbar__photo{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3)}
 
-/* ═══════════════════════════════════════════════
-   Preloader
-   ═══════════════════════════════════════════════ */
-.preloader {
-  position: fixed; inset: 0; z-index: 9999;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--bg);
-  transition: opacity 0.5s ease;
+.backdrop{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:99;opacity:0;transition:opacity .3s;
 }
-.preloader.hide { opacity: 0; pointer-events: none; }
-.preloader-mono {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
+.backdrop.show{display:block;opacity:1}
 
-/* ═══════════════════════════════════════════════
-   Scroll Progress
-   ═══════════════════════════════════════════════ */
-.scroll-progress {
-  position: fixed; top: 0; left: 0;
-  height: 2px; width: 0;
-  background: var(--accent);
-  z-index: 10001;
-  transition: none;
+/* ══ MAIN ══ */
+.main{margin-left:var(--sidebar-w);min-height:100vh;padding:32px}
+.section{
+  background:var(--bg-white);border-radius:14px;
+  box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.03);
+  padding:60px 48px;margin-bottom:24px;max-width:880px;
 }
+.section__inner{max-width:800px}
 
-/* ═══════════════════════════════════════════════
-   Navigation
-   ═══════════════════════════════════════════════ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--nav-h);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 clamp(1.5rem, 4vw, 6rem);
-  background: rgba(250,250,250,0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 10000;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s ease;
-}
-.nav.scrolled { border-bottom-color: var(--border); }
-.nav-brand {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-.nav-links {
-  display: flex; align-items: center; gap: 32px;
-}
-.nav-links a {
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-links a.active { color: var(--accent); }
-.nav-resume {
-  font-size: 0.875rem !important;
-  font-weight: 500 !important;
-  padding: 6px 16px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  transition: border-color 0.2s ease, color 0.2s ease !important;
-}
-.nav-resume:hover {
-  border-color: var(--accent) !important;
-  color: var(--accent) !important;
-}
+.sh{font-weight:700;font-size:1.5rem;margin-bottom:4px}
+.sh-bar{width:40px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:28px}
 
-/* Hamburger */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  width: 24px;
-  cursor: pointer;
-  z-index: 10002;
-}
-.hamburger span {
-  display: block; height: 2px; width: 100%;
-  background: var(--text);
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.reveal{opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-/* Mobile overlay */
-.mobile-nav {
-  position: fixed; inset: 0; z-index: 10001;
-  background: var(--bg-white);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 36px;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.mobile-nav.open { opacity: 1; pointer-events: auto; }
-.mobile-nav a {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--text);
-  transition: color 0.2s ease;
-}
-.mobile-nav a:hover { color: var(--accent); }
+/* ══ ABOUT ══ */
+.hero__greeting{font-weight:700;font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:8px}
+.hero__greeting span{color:var(--accent)}
+.hero__subtitle{font-weight:400;font-size:1.1rem;color:var(--text-secondary);margin-bottom:24px}
+.hero__text{font-size:1rem;line-height:1.8;color:var(--text);margin-bottom:16px}
+.hero__text:last-of-type{margin-bottom:32px}
 
-/* ═══════════════════════════════════════════════
-   Layout helpers
-   ═══════════════════════════════════════════════ */
-.container {
-  width: 100%;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 4vw, 6rem);
-}
-.section {
-  padding: 120px 0;
-}
-.section-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
-}
-.section-line {
-  width: 40px; height: 2px;
-  background: var(--accent);
-  margin-bottom: 48px;
-}
-.section-bg-surface { background: var(--surface); }
-.section-bg-white { background: var(--bg-white); }
+.stats{display:flex;gap:0;border-top:1px solid var(--border);padding-top:28px;margin-top:8px}
+.stat{flex:1;text-align:center;position:relative}
+.stat+.stat::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:1px;background:var(--border)}
+.stat__num{font-weight:700;font-size:1.6rem;color:var(--accent);display:block}
+.stat__label{font-size:.8rem;color:var(--text-tertiary);margin-top:2px}
 
-/* ═══════════════════════════════════════════════
-   Reveal animations
-   ═══════════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+/* ══ EXPERIENCE ══ */
+.exp-card{
+  border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:20px;
+  background:var(--bg);border-radius:0 10px 10px 0;
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.exp-card:last-child{margin-bottom:0}
+.exp-card__head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px}
+.exp-card__company{font-weight:600;font-size:1.05rem}
+.exp-card__period{font-size:.82rem;color:var(--text-tertiary);white-space:nowrap}
+.exp-card__role{font-size:.9rem;color:var(--text-secondary);margin:4px 0 2px}
+.exp-card__loc{font-size:.8rem;color:var(--text-tertiary);margin-bottom:8px}
+.exp-card__desc{font-size:.9rem;line-height:1.7;color:var(--text-secondary)}
 
-/* ═══════════════════════════════════════════════
-   Hero
-   ═══════════════════════════════════════════════ */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-top: var(--nav-h);
+/* ══ PROJECTS ══ */
+.projects__sub{font-size:.95rem;color:var(--text-secondary);margin-bottom:24px}
+.proj{
+  border:1px solid var(--border);border-radius:10px;padding:24px;
+  margin-bottom:16px;background:var(--bg-white);
+  transition:border-color .25s,box-shadow .25s;
 }
-.hero-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  width: 100%;
+.proj:hover{border-color:rgba(79,140,247,.3);box-shadow:0 2px 12px rgba(79,140,247,.06)}
+.proj__top{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.proj__num{font-size:.8rem;color:var(--text-tertiary);font-weight:500;flex-shrink:0}
+.proj__name{font-weight:600;font-size:1.05rem}
+.proj__one{font-size:.9rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.5}
+.proj__tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{background:var(--bg);color:var(--text-secondary);font-size:.75rem;padding:4px 12px;border-radius:20px;border:1px solid var(--border)}
+.proj__toggle{
+  background:none;border:none;color:var(--accent);font-size:.85rem;
+  cursor:pointer;font-family:inherit;font-weight:500;padding:0;
+  display:inline-flex;align-items:center;gap:4px;
 }
-.hero-content { flex: 1; }
-.hero-badge {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--surface);
-  padding: 6px 16px;
-  border-radius: 100px;
-  margin-bottom: 28px;
+.proj__toggle:hover{color:var(--accent-hover)}
+.proj__toggle svg{width:14px;height:14px;fill:currentColor;transition:transform .25s}
+.proj__toggle.open svg{transform:rotate(180deg)}
+.proj__full{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,margin .25s;
+  font-size:.9rem;color:var(--text-secondary);line-height:1.7;
 }
-.hero-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin-bottom: 20px;
-}
-.hero-title .accent { color: var(--accent); }
-.hero-desc {
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 520px;
-  margin-bottom: 36px;
-}
-.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 14px 28px;
-  border-radius: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-.btn:hover { transform: translateY(-2px); }
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-.btn-primary:hover {
-  background: var(--accent-hover);
-  box-shadow: 0 4px 16px rgba(37,99,235,0.25);
-}
-.btn-outline {
-  border: 1px solid var(--border);
-  color: var(--text);
-  background: var(--bg-white);
-}
-.btn-outline:hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-}
+.proj__full.open{max-height:300px;margin-top:12px}
 
-/* Hero photo */
-.hero-photo {
-  flex-shrink: 0;
+/* ══ SKILLS ══ */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.skill-cat__label{
+  font-weight:600;font-size:.8rem;color:var(--text-tertiary);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;
 }
-.hero-photo img {
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+.skill-cat__pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{
+  background:var(--bg);border:1px solid var(--border);border-radius:20px;
+  padding:6px 14px;font-size:.8rem;transition:background .2s,border-color .2s;
 }
+.pill:hover{background:var(--accent-light);border-color:rgba(79,140,247,.3)}
 
-/* Scroll indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-tertiary);
-  font-size: 0.75rem;
-  animation: bounce-down 2s ease infinite;
+/* ══ EDUCATION ══ */
+.edu-card{
+  border-left:3px solid var(--accent);padding:20px 24px;
+  background:var(--bg);border-radius:0 10px 10px 0;
 }
-.scroll-chevron {
-  width: 20px; height: 20px;
-  border-right: 2px solid var(--text-tertiary);
-  border-bottom: 2px solid var(--text-tertiary);
-  transform: rotate(45deg);
-}
-@keyframes bounce-down {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
-}
+.edu-card__school{font-weight:600;font-size:1.05rem}
+.edu-card__degree{font-size:.9rem;color:var(--text-secondary);margin:4px 0 2px}
+.edu-card__meta{font-size:.8rem;color:var(--text-tertiary)}
 
-/* ═══════════════════════════════════════════════
-   About
-   ═══════════════════════════════════════════════ */
-.about-content {
-  max-width: 720px;
-  margin: 0 auto;
+/* ══ CONTACT ══ */
+.contact-list{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.contact-item{display:flex;align-items:center;gap:12px}
+.contact-item__label{
+  font-size:.75rem;font-weight:600;color:var(--text-tertiary);
+  text-transform:uppercase;letter-spacing:.04em;width:80px;flex-shrink:0;
 }
-.about-content p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--text);
-  margin-bottom: 24px;
+.contact-item__val{font-size:.92rem;color:var(--text)}
+.contact-item__val a{color:var(--accent);transition:color .2s}
+.contact-item__val a:hover{color:var(--accent-hover)}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent);color:#fff;border:none;border-radius:8px;
+  padding:12px 28px;font-size:.95rem;font-weight:600;font-family:inherit;
+  cursor:pointer;transition:background .2s;text-decoration:none;
 }
-.about-content p:last-of-type { margin-bottom: 0; }
-.stats-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 48px;
-  margin-top: 56px;
-  flex-wrap: wrap;
-}
-.stat { text-align: center; }
-.stat-number {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-.stat-label {
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--text-tertiary);
-  margin-top: 4px;
-}
-.stat-divider {
-  width: 1px; height: 40px;
-  background: var(--border);
-}
+.cta-btn:hover{background:var(--accent-hover)}
 
-/* ═══════════════════════════════════════════════
-   Experience
-   ═══════════════════════════════════════════════ */
-.exp-cards { display: flex; flex-direction: column; gap: 24px; }
-.exp-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  :root{--sidebar-w:240px}
 }
-.exp-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
+@media(max-width:768px){
+  :root{--sidebar-w:280px}
+  .topbar{display:flex}
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;padding:76px 16px 24px}
+  .section{padding:32px 20px;border-radius:12px}
+  .stats{flex-direction:column;gap:16px}
+  .stat+.stat::before{display:none}
+  .exp-card__head{flex-direction:column}
+  .skills-grid{grid-template-columns:1fr}
+  body.sidebar-open{overflow:hidden}
 }
-.exp-company {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-}
-.exp-role {
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  margin-top: 4px;
-}
-.exp-meta {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  text-align: right;
-  flex-shrink: 0;
-}
-.exp-meta span { display: block; }
-.exp-desc {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-top: 16px;
-}
-
-/* ═══════════════════════════════════════════════
-   Projects
-   ═══════════════════════════════════════════════ */
-.projects-header {
-  margin-bottom: 48px;
-}
-.projects-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.projects-subtitle {
-  font-size: 1rem;
-  color: var(--text-secondary);
-}
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.project-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.project-card:hover {
-  border-color: rgba(37,99,235,0.3);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-}
-.project-num {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-tertiary);
-  margin-bottom: 10px;
-}
-.project-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-.project-oneliner {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-top: 8px;
-  line-height: 1.5;
-}
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 16px;
-}
-.project-tag {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--surface);
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-.project-toggle {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-top: 16px;
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: 0;
-  transition: color 0.2s ease;
-}
-.project-toggle:hover { color: var(--accent-hover); }
-.project-full {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease;
-  opacity: 0;
-  margin-top: 0;
-}
-.project-full.open {
-  max-height: 300px;
-  opacity: 1;
-  margin-top: 16px;
-}
-.project-full p {
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-/* ═══════════════════════════════════════════════
-   Skills
-   ═══════════════════════════════════════════════ */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.skill-cat-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-}
-.skill-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.skill-pill {
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: var(--text);
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  padding: 8px 16px;
-  border-radius: 8px;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-.skill-pill:hover {
-  background: var(--accent-light);
-  border-color: rgba(37,99,235,0.3);
-}
-
-/* ═══════════════════════════════════════════════
-   Education
-   ═══════════════════════════════════════════════ */
-.edu-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-  max-width: 640px;
-}
-.edu-school {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-}
-.edu-degree {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin-top: 4px;
-}
-.edu-meta {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  margin-top: 4px;
-}
-
-/* ═══════════════════════════════════════════════
-   Contact
-   ═══════════════════════════════════════════════ */
-.contact-heading {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.contact-sub {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  margin-bottom: 48px;
-}
-.contact-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 48px;
-}
-.contact-item-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 6px;
-}
-.contact-item-value {
-  font-size: 0.95rem;
-  color: var(--text);
-}
-.contact-item-value a {
-  transition: color 0.2s ease;
-}
-.contact-item-value a:hover { color: var(--accent); }
-.contact-cta {
-  text-align: center;
-  margin-top: 8px;
-}
-.btn-large {
-  font-size: 1rem;
-  padding: 16px 36px;
-}
-
-/* ═══════════════════════════════════════════════
-   Footer
-   ═══════════════════════════════════════════════ */
-.footer {
-  background: var(--bg-white);
-  border-top: 1px solid var(--border);
-  padding: 24px clamp(1.5rem, 4vw, 6rem);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-.footer-copy {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-.footer-links {
-  display: flex;
-  gap: 24px;
-}
-.footer-links a {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
-}
-.footer-links a:hover { color: var(--accent); }
-
-/* ═══════════════════════════════════════════════
-   Responsive
-   ═══════════════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .section { padding: 80px 0; }
-  .projects-grid { gap: 20px; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-}
-
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-
-  .hero-inner {
-    flex-direction: column-reverse;
-    text-align: center;
-    gap: 32px;
-  }
-  .hero-desc { margin-left: auto; margin-right: auto; }
-  .hero-buttons { justify-content: center; }
-  .hero-photo img { width: 150px; height: 150px; }
-
-  .projects-grid { grid-template-columns: 1fr; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .section { padding: 80px 0; }
-  .stats-row { gap: 24px; }
-  .stat-divider { display: none; }
-
-  .exp-header { flex-direction: column; }
-  .exp-meta { text-align: left; }
-
-  .contact-items { gap: 24px; }
-}
-
-@media (max-width: 480px) {
-  .hero-title { font-size: clamp(2rem, 8vw, 2.5rem); }
-  .hero-desc { font-size: 1rem; }
-  .btn { padding: 12px 22px; font-size: 0.9rem; }
-  .section { padding: 64px 0; }
-  .skills-grid { grid-template-columns: 1fr; }
-  .projects-title { font-size: 1.5rem; }
-  .contact-heading { font-size: 1.5rem; }
+@media(max-width:480px){
+  .hero__subtitle{font-size:.95rem}
+  .hero__text{font-size:.9rem}
+  .section{padding:24px 16px}
+  .sh{font-size:1.3rem}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ Preloader ═══ -->
-<div class="preloader" id="preloader">
-  <span class="preloader-mono">HG</span>
-</div>
-
-<!-- ═══ Scroll Progress ═══ -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- ═══ Navigation ═══ -->
-<nav class="nav" id="nav">
-  <a href="#" class="nav-brand">Harsh Goyal</a>
-  <div class="nav-links" id="navLinks">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-    <a href="resume.pdf" target="_blank" rel="noopener" class="nav-resume">Resume ↗</a>
-  </div>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
+<!-- TOP BAR (mobile) -->
+<header class="topbar" role="banner">
+  <button class="topbar__burger" aria-label="Open navigation menu" id="burgerBtn">
+    <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
   </button>
-</nav>
+  <span class="topbar__name">Harsh Goyal</span>
+  <img class="topbar__photo" src="img/profile.jpg" alt="Harsh Goyal">
+</header>
 
-<!-- ═══ Mobile Nav ═══ -->
-<div class="mobile-nav" id="mobileNav">
-  <a href="#about" class="mobile-link">About</a>
-  <a href="#experience" class="mobile-link">Experience</a>
-  <a href="#projects" class="mobile-link">Projects</a>
-  <a href="#skills" class="mobile-link">Skills</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-  <a href="resume.pdf" target="_blank" rel="noopener" class="mobile-link">Resume ↗</a>
-</div>
+<!-- BACKDROP -->
+<div class="backdrop" id="backdrop"></div>
 
-<!-- ═══ Main Content ═══ -->
-<main id="mainContent" style="opacity:0; transition: opacity 0.5s ease;">
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+  <div class="sidebar__profile">
+    <img class="sidebar__photo" src="img/profile.jpg" alt="Harsh Goyal — profile photo">
+    <p class="sidebar__name">Harsh Goyal</p>
+    <p class="sidebar__title">Software Developer</p>
+  </div>
+  <hr class="sidebar__sep">
+  <nav class="sidebar__nav">
+    <a href="#about" class="sidebar__link active">About</a>
+    <a href="#experience" class="sidebar__link">Experience</a>
+    <a href="#projects" class="sidebar__link">Projects</a>
+    <a href="#skills" class="sidebar__link">Skills</a>
+    <a href="#education" class="sidebar__link">Education</a>
+    <a href="#contact" class="sidebar__link">Contact</a>
+  </nav>
+  <div class="sidebar__bottom">
+    <hr class="sidebar__sep">
+    <div class="sidebar__icons">
+      <a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/harshanilgoyal/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:goyalharsh07@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a href="resume.pdf" target="_blank" rel="noopener" aria-label="Download Resume">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zm-3-5.5l-3.5 3.5L8 14.5l1.41-1.41L11 14.67V10h2v4.67l1.59-1.58L16 14.5z"/></svg>
+      </a>
+    </div>
+    <p class="sidebar__copy">&copy; 2026 Harsh Goyal</p>
+  </div>
+</aside>
 
-<!-- ═══ Hero ═══ -->
-<section class="hero" style="position:relative;">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge reveal">Software Developer at Finastra</div>
-        <h1 class="hero-title reveal">Building systems that<br>run in <span class="accent">production.</span></h1>
-        <p class="hero-desc reveal">13+ live platforms — from AI vision to cloud infrastructure, ERP to automation.</p>
-        <div class="hero-buttons reveal">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-outline">Download Resume</a>
-        </div>
-      </div>
-      <div class="hero-photo reveal">
-        <img src="img/profile.jpg" alt="Harsh Goyal" width="200" height="200">
+<!-- MAIN -->
+<main class="main" id="mainContent">
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="section__inner reveal">
+      <h1 class="hero__greeting">Hi, I'm <span>Harsh</span> Goyal</h1>
+      <p class="hero__subtitle">Software Developer at Finastra</p>
+      <p class="hero__text">I work on GPP (Global PAYplus) — an enterprise payments platform powering banks globally. Started via Xoriant in 2020, onboarded directly by Finastra in 2023.</p>
+      <p class="hero__text">Outside of my day job, I've independently designed, developed, and deployed over 13 production-grade platforms — from an AI-powered cinema audience counting system with edge-cloud YOLO inference to a full cloud infrastructure dashboard managing all my live services on a self-hosted VPS.</p>
+      <p class="hero__text">I believe in owning the entire stack: writing the code, setting up the servers, configuring Nginx, managing SSL certs, and monitoring everything in production. If it needs to exist, I build it.</p>
+      <div class="stats">
+        <div class="stat reveal"><span class="stat__num" data-target="13">0</span><span class="stat__label">Production Systems</span></div>
+        <div class="stat reveal"><span class="stat__num" data-target="13">0</span><span class="stat__label">Services Deployed</span></div>
+        <div class="stat reveal"><span class="stat__num" data-target="7">0</span><span class="stat__label">Years Coding</span></div>
       </div>
     </div>
-  </div>
-  <div class="scroll-indicator">
-    <div class="scroll-chevron"></div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ About ═══ -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="section-label reveal">About</div>
-    <div class="section-line reveal"></div>
-    <div class="about-content">
-      <p class="reveal">I'm a software developer at Finastra, working on GPP (Global PAYplus) — an enterprise payments platform powering banks globally. Started via Xoriant in 2020, onboarded directly by Finastra in 2023.</p>
-      <p class="reveal">Outside of my day job, I've independently designed, developed, and deployed over 13 production-grade platforms — from an AI-powered cinema audience counting system with edge-cloud YOLO inference to a full cloud infrastructure dashboard managing all my live services on a self-hosted VPS.</p>
-      <p class="reveal">I believe in owning the entire stack: writing the code, setting up the servers, configuring Nginx, managing SSL certs, and monitoring everything in production. If it needs to exist, I build it.</p>
-      <div class="stats-row reveal">
-        <div class="stat">
-          <div class="stat-number" data-target="13">0</div>
-          <div class="stat-label">Production Systems</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <div class="stat-number" data-target="13">0</div>
-          <div class="stat-label">Services Deployed</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <div class="stat-number" data-target="7">0</div>
-          <div class="stat-label">Years Coding</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Experience ═══ -->
-<section class="section section-bg-surface" id="experience">
-  <div class="container">
-    <div class="section-label reveal">Experience</div>
-    <div class="section-line reveal"></div>
-    <div class="exp-cards">
-
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="section__inner reveal">
+      <h2 class="sh">Experience</h2>
+      <div class="sh-bar"></div>
       <div class="exp-card reveal">
-        <div class="exp-header">
+        <div class="exp-card__head">
           <div>
-            <div class="exp-company">Finastra (Fundtech India Ltd)</div>
-            <div class="exp-role">Software Developer — GPP (Global PAYplus)</div>
+            <div class="exp-card__company">Finastra (Fundtech India Ltd)</div>
+            <div class="exp-card__role">Software Developer — GPP (Global PAYplus)</div>
+            <div class="exp-card__loc">Nagpur, India</div>
           </div>
-          <div class="exp-meta">
-            <span>Aug 2023 — Present</span>
-            <span>Nagpur, India</span>
-          </div>
+          <span class="exp-card__period">Aug 2023 — Present</span>
         </div>
-        <div class="exp-desc">Onboarded directly by Finastra. Working on GPP (Global PAYplus) — an enterprise payments platform powering banks and financial institutions globally.</div>
+        <p class="exp-card__desc">Onboarded directly by Finastra. Working on GPP (Global PAYplus) — an enterprise payments platform powering banks and financial institutions globally.</p>
       </div>
-
       <div class="exp-card reveal">
-        <div class="exp-header">
+        <div class="exp-card__head">
           <div>
-            <div class="exp-company">Xoriant Solutions</div>
-            <div class="exp-role">Software Developer — Client: Finastra</div>
+            <div class="exp-card__company">Xoriant Solutions</div>
+            <div class="exp-card__role">Software Developer — Client: Finastra</div>
+            <div class="exp-card__loc">Nagpur, India</div>
           </div>
-          <div class="exp-meta">
-            <span>Nov 2020 — Aug 2023</span>
-            <span>Nagpur, India</span>
-          </div>
+          <span class="exp-card__period">Nov 2020 — Aug 2023</span>
         </div>
-        <div class="exp-desc">Worked on Finastra's enterprise financial technology products as an embedded developer. Contributed to systems powering banking and financial services, leading to a direct hire by Finastra.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Projects ═══ -->
-<section class="section section-bg-white" id="projects">
-  <div class="container">
-    <div class="section-label reveal">Projects</div>
-    <div class="section-line reveal"></div>
-    <div class="projects-header reveal">
-      <div class="projects-title">Things I've Built</div>
-      <div class="projects-subtitle">Production systems running 24/7, serving real users.</div>
-    </div>
-
-    <div class="projects-grid">
-
-      <!-- /01 -->
-      <div class="project-card reveal">
-        <div class="project-num">/01</div>
-        <div class="project-name">DRASHTA AI — AI Cinema Occupancy Platform</div>
-        <div class="project-oneliner">Edge-cloud YOLO-based cinema audience counting with automated WhatsApp reports</div>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">YOLOv8</span>
-          <span class="project-tag">Flask</span>
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">OpenCV</span>
-          <span class="project-tag">PWA</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>End-to-end AI cinema occupancy platform with edge-cloud architecture. A background capture service at each cinema location feeds frames from 9 RTSP cameras to a cloud YOLO inference engine. Results flow into a PHP analytics backend that generates automated WhatsApp PDF reports to cinema owners. Includes 4 custom desktop tools for dataset collection, image quality filtering, YOLO annotation, and model training.</p>
-        </div>
-      </div>
-
-      <!-- /02 -->
-      <div class="project-card reveal">
-        <div class="project-num">/02</div>
-        <div class="project-name">YUKTI ERP — Enterprise ERP Gateway</div>
-        <div class="project-oneliner">Oracle-to-cloud ERP bridge with AI insights and customer portal</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">Chart.js</span>
-          <span class="project-tag">Python</span>
-          <span class="project-tag">Oracle</span>
-          <span class="project-tag">MariaDB</span>
-          <span class="project-tag">PWA</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Multi-tenant ERP gateway that bridges an on-premise Oracle 11g database to the cloud via a Python sync service. Features a staff dashboard with daily/monthly sales charts, real-time inventory across multiple godowns, general ledger with account hierarchies, e-way bill support, dispatch tracking with photo uploads, and a separate OTP-authenticated customer portal. Integrates AI insights from OpenAI, Gemini, and Anthropic.</p>
-        </div>
-      </div>
-
-      <!-- /03 -->
-      <div class="project-card reveal">
-        <div class="project-num">/03</div>
-        <div class="project-name">DHANLIPI — Biometric Attendance &amp; Payroll</div>
-        <div class="project-oneliner">Hikvision biometric sync to auto-calculated payslips with Indian compliance</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">MySQL</span>
-          <span class="project-tag">Biometric</span>
-          <span class="project-tag">PDF</span>
-          <span class="project-tag">WhatsApp</span>
-          <span class="project-tag">PWA</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Biometric-to-payslip platform connecting Hikvision devices via a Windows sync agent. Auto-calculates complex Indian payroll rules — PF, ESI, TDS, overtime, late penalties, sandwich rules, and per-employee overrides. Generates professional landscape PDF payslips in bulk. Features a color-coded attendance grid, revision history, advance/bonus tracking, and WhatsApp first-punch alerts. Offers subscription plans from Trial to Enterprise.</p>
-        </div>
-      </div>
-
-      <!-- /04 -->
-      <div class="project-card reveal">
-        <div class="project-num">/04</div>
-        <div class="project-name">WHATSAPP HUB — Business Communication Platform</div>
-        <div class="project-oneliner">Full-stack WhatsApp platform with live chat, bots, and native Android app</div>
-        <div class="project-tags">
-          <span class="project-tag">Kotlin</span>
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">Meta API</span>
-          <span class="project-tag">Android</span>
-          <span class="project-tag">FPDF</span>
-          <span class="project-tag">PWA</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Full-stack WhatsApp business platform with a live chat interface, contact management with Google Contacts sync, bulk label operations, quick replies with media, and Meta Flows v3.1 quotation generator with PDF templates. Includes multi-app webhook fanout for Yukti ERP integration, QR code/PDF merge utilities, payment reminders, staff role-based access, and a native Android companion app with background polling notifications and inline reply.</p>
-        </div>
-      </div>
-
-      <!-- /05 -->
-      <div class="project-card reveal">
-        <div class="project-num">/05</div>
-        <div class="project-name">GOYAL SOLAR CRM — Solar Business Platform</div>
-        <div class="project-oneliner">7-stage project pipeline with environmental impact tracking and PDF proposals</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">FPDF</span>
-          <span class="project-tag">MySQL</span>
-          <span class="project-tag">WhatsApp</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Unified solar business CRM with Google Sheets client import. Tracks projects through a 7-stage pipeline (Application → Sanction → Load Extension → Meter Testing → Installation → Subsidy Portal → Miscellaneous), logs monthly generation with auto-calculated environmental impact (CO₂ reduced, coal saved, trees planted), manages AMC contracts with expiry alerts, and generates professional multi-page PDF proposals. WhatsApp templates handle generation reports, stage updates, and washing confirmations.</p>
-        </div>
-      </div>
-
-      <!-- /06 -->
-      <div class="project-card reveal">
-        <div class="project-num">/06</div>
-        <div class="project-name">DISPATCH — Delivery Label &amp; Memo SaaS</div>
-        <div class="project-oneliner">Multi-tenant label generation with e-Invoice import and subscription tiers</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">FPDF</span>
-          <span class="project-tag">MySQL</span>
-          <span class="project-tag">WhatsApp</span>
-          <span class="project-tag">SaaS</span>
-          <span class="project-tag">PWA</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Multi-tenant SaaS platform for professional delivery label and memo generation. Supports 4 label types — thermal (75×50mm), colored A4, delivery memos, and courier labels. Features e-Invoice JSON import that auto-fills everything, party &amp; item autocomplete, email &amp; WhatsApp PDF delivery, staff accounts with module-level access, subscription tiers, OTP phone-first registration, and keyboard shortcuts (F1-F4, Ctrl+Enter). Built as an offline-capable PWA.</p>
-        </div>
-      </div>
-
-      <!-- /07 -->
-      <div class="project-card reveal">
-        <div class="project-num">/07</div>
-        <div class="project-name">SETU — Data Transformation Platform</div>
-        <div class="project-oneliner">Config-driven vendor CSV/Excel auto-detection and format normalization</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">PhpSpreadsheet</span>
-          <span class="project-tag">MySQL</span>
-          <span class="project-tag">Bootstrap</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Config-driven vendor data transformation platform. Automatically detects and reformats CSV/Excel files from various suppliers into a standardized format using FILE_MATCH and STRING_MATCH rules. Handles multi-format parsing (CSV, XLS, XLSX via PhpSpreadsheet), smart date normalization (Excel serials, dd-mm-yy, ddmmyy), per-company isolation, conversion history with download links, and real-time UI console feedback during processing.</p>
-        </div>
-      </div>
-
-      <!-- /08 -->
-      <div class="project-card reveal">
-        <div class="project-num">/08</div>
-        <div class="project-name">GS SHOP — Solar E-commerce</div>
-        <div class="project-oneliner">Product storefront with WhatsApp admin bot and auto image optimization</div>
-        <div class="project-tags">
-          <span class="project-tag">Vue.js</span>
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">Tailwind</span>
-          <span class="project-tag">WhatsApp Bot</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Self-hosted solar product e-commerce storefront for Goyal Solar Energy. Features a product catalog with search &amp; filter by brand/category, a WhatsApp admin bot for managing products (search, edit price, toggle visibility, upload images), auto image optimization with WebP conversion, SEO engine with Schema.org markup, and a web admin dashboard for bulk management.</p>
-        </div>
-      </div>
-
-      <!-- /09 -->
-      <div class="project-card reveal">
-        <div class="project-num">/09</div>
-        <div class="project-name">SARVATRA CLOUD — VPS Dashboard &amp; Auth Hub</div>
-        <div class="project-oneliner">Self-hosted infrastructure management with unified authentication for 9 apps</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">Nginx</span>
-          <span class="project-tag">systemd</span>
-          <span class="project-tag">Linux</span>
-          <span class="project-tag">MariaDB</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Self-built VPS management dashboard and unified auth hub. The control panel monitors real-time CPU/RAM/disk with 5-second auto-refresh, manages Python &amp; PHP projects with one-click deploy, handles Nginx vhost CRUD (proxy, PHP, static), systemd service lifecycle with live logs, and MariaDB browsing. The auth hub provides centralized login, multi-company support, app registry, and a User × App × Company × Role access matrix consumed by all 9 registered apps.</p>
-        </div>
-      </div>
-
-      <!-- /10 -->
-      <div class="project-card reveal">
-        <div class="project-num">/10</div>
-        <div class="project-name">SAARANSH — Financial Analytics</div>
-        <div class="project-oneliner">Financial data aggregation and analysis for business insights</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">MySQL</span>
-          <span class="project-tag">Analytics</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Financial data aggregation and analysis platform. Consolidates financial information from multiple sources, processes and normalizes datasets, and generates actionable business insights with visualizations for informed decision-making.</p>
-        </div>
-      </div>
-
-      <!-- /11 -->
-      <div class="project-card reveal">
-        <div class="project-num">/11</div>
-        <div class="project-name">BLAZE DOWNLOADER — Desktop Download Manager</div>
-        <div class="project-oneliner">IDM-style parallel downloads with dynamic segmentation and smart resume</div>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">CustomTkinter</span>
-          <span class="project-tag">Threading</span>
-          <span class="project-tag">Cross-platform</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>IDM-style desktop download manager with dynamic segmentation that steals work from slow segments to keep all connections busy. Supports up to 32 parallel connections, smart resume from exact byte positions (survives crashes), priority-based queue, auto-categorization, speed limiting via token-bucket rate limiter, clipboard monitoring, scheduling with day-of-week support, and proxy/auth support. Modern dark UI with real-time segment visualization.</p>
-        </div>
-      </div>
-
-      <!-- /12 -->
-      <div class="project-card reveal">
-        <div class="project-num">/12</div>
-        <div class="project-name">WA HUB APP — Android Companion</div>
-        <div class="project-oneliner">Native Kotlin app with background notifications surviving reboot</div>
-        <div class="project-tags">
-          <span class="project-tag">Kotlin</span>
-          <span class="project-tag">Android</span>
-          <span class="project-tag">Gradle</span>
-          <span class="project-tag">GitHub Actions</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Native Android companion for WhatsApp Hub with background notifications that work even after app kill or device reboot. Uses a foreground service polling the API every 10 seconds, supports inline reply from the notification shade, media capture (camera, files, voice), auto-update with download prompts, and crash logging with copy-to-clipboard reports. Built with Kotlin, targeting Android 7.0–14.</p>
-        </div>
-      </div>
-
-      <!-- /13 -->
-      <div class="project-card reveal">
-        <div class="project-num">/13</div>
-        <div class="project-name">EARTHSOL — Corporate Website</div>
-        <div class="project-oneliner">Dynamic product gallery website with Bootstrap 5 and PHP backend</div>
-        <div class="project-tags">
-          <span class="project-tag">PHP</span>
-          <span class="project-tag">Bootstrap 5</span>
-          <span class="project-tag">MySQL</span>
-        </div>
-        <button class="project-toggle" onclick="toggleProject(this)">Read more +</button>
-        <div class="project-full">
-          <p>Corporate website for Earthsol with a dynamic product gallery that auto-loads images from the assets directory. Clean, responsive design built on Bootstrap 5 with PHP backend and MySQL database integration for product management.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Skills ═══ -->
-<section class="section section-bg-surface" id="skills">
-  <div class="container">
-    <div class="section-label reveal">Skills</div>
-    <div class="section-line reveal"></div>
-    <div class="skills-grid">
-
-      <div class="reveal">
-        <div class="skill-cat-label">Languages</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">PHP</span>
-          <span class="skill-pill">JavaScript</span>
-          <span class="skill-pill">Kotlin</span>
-          <span class="skill-pill">Java</span>
-          <span class="skill-pill">SQL</span>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="skill-cat-label">AI &amp; ML</div>
-        <div class="skill-pills">
-          <span class="skill-pill">YOLO</span>
-          <span class="skill-pill">OpenCV</span>
-          <span class="skill-pill">Flask</span>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="skill-cat-label">Frontend</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Vue.js</span>
-          <span class="skill-pill">Tailwind</span>
-          <span class="skill-pill">Bootstrap</span>
-          <span class="skill-pill">Chart.js</span>
-          <span class="skill-pill">CustomTkinter</span>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="skill-cat-label">Backend &amp; Cloud</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Nginx</span>
-          <span class="skill-pill">Linux</span>
-          <span class="skill-pill">systemd</span>
-          <span class="skill-pill">Git</span>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="skill-cat-label">Databases</div>
-        <div class="skill-pills">
-          <span class="skill-pill">MySQL</span>
-          <span class="skill-pill">MariaDB</span>
-          <span class="skill-pill">Oracle</span>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="skill-cat-label">Mobile &amp; APIs</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Android</span>
-          <span class="skill-pill">WhatsApp API</span>
-          <span class="skill-pill">FPDF</span>
-          <span class="skill-pill">Meta API</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Education ═══ -->
-<section class="section section-bg-white" id="education">
-  <div class="container">
-    <div class="section-label reveal">Education</div>
-    <div class="section-line reveal"></div>
-    <div class="edu-card reveal">
-      <div class="edu-school">Shri Ramdeobaba College of Engineering and Management</div>
-      <div class="edu-degree">B.E. in Computer Science</div>
-      <div class="edu-meta">2016 — 2020 · Nagpur, India</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Contact ═══ -->
-<section class="section section-bg-surface" id="contact">
-  <div class="container">
-    <div class="contact-heading reveal">Get in touch</div>
-    <div class="contact-sub reveal">Have a project in mind or just want to say hello?</div>
-
-    <div class="contact-items reveal">
-      <div>
-        <div class="contact-item-label">Email</div>
-        <div class="contact-item-value"><a href="mailto:goyalharsh07@gmail.com">goyalharsh07@gmail.com</a></div>
-      </div>
-      <div>
-        <div class="contact-item-label">Phone</div>
-        <div class="contact-item-value"><a href="tel:+917588800097">+91 7588800097</a></div>
-      </div>
-      <div>
-        <div class="contact-item-label">GitHub</div>
-        <div class="contact-item-value"><a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">github.com/harshanilgoyal</a></div>
-      </div>
-      <div>
-        <div class="contact-item-label">LinkedIn</div>
-        <div class="contact-item-value"><a href="https://linkedin.com/in/harshanilgoyal" target="_blank" rel="noopener">linkedin.com/in/harshanilgoyal</a></div>
-      </div>
-      <div>
-        <div class="contact-item-label">Location</div>
-        <div class="contact-item-value">Nagpur, India</div>
+        <p class="exp-card__desc">Worked on Finastra's enterprise financial technology products as an embedded developer. Contributed to systems powering banking and financial services, leading to a direct hire by Finastra.</p>
       </div>
     </div>
+  </section>
 
-    <div class="contact-cta reveal">
-      <a href="mailto:goyalharsh07@gmail.com" class="btn btn-primary btn-large">Send an Email →</a>
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="section__inner reveal">
+      <h2 class="sh">Projects</h2>
+      <div class="sh-bar"></div>
+      <p class="projects__sub">Production systems running 24/7</p>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/01</span><span class="proj__name">DRASHTA AI — AI Cinema Occupancy Platform</span></div>
+        <p class="proj__one">Edge-cloud YOLO-based cinema audience counting with automated WhatsApp reports</p>
+        <div class="proj__tags"><span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">Flask</span><span class="tag">PHP</span><span class="tag">OpenCV</span><span class="tag">PWA</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">End-to-end AI cinema occupancy platform with edge-cloud architecture. A background capture service at each cinema location feeds frames from 9 RTSP cameras to a cloud YOLO inference engine. Results flow into a PHP analytics backend that generates automated WhatsApp PDF reports to cinema owners. Includes 4 custom desktop tools for dataset collection, image quality filtering, YOLO annotation, and model training.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/02</span><span class="proj__name">YUKTI ERP — Enterprise ERP Gateway</span></div>
+        <p class="proj__one">Oracle-to-cloud ERP bridge with AI insights and customer portal</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">Chart.js</span><span class="tag">Python</span><span class="tag">Oracle</span><span class="tag">MariaDB</span><span class="tag">PWA</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Multi-tenant ERP gateway that bridges an on-premise Oracle 11g database to the cloud via a Python sync service. Features a staff dashboard with daily/monthly sales charts, real-time inventory across multiple godowns, general ledger with account hierarchies, e-way bill support, dispatch tracking with photo uploads, and a separate OTP-authenticated customer portal. Integrates AI insights from OpenAI, Gemini, and Anthropic.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/03</span><span class="proj__name">DHANLIPI — Biometric Attendance &amp; Payroll</span></div>
+        <p class="proj__one">Hikvision biometric sync to auto-calculated payslips with Indian compliance</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Biometric</span><span class="tag">PDF</span><span class="tag">WhatsApp</span><span class="tag">PWA</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Biometric-to-payslip platform connecting Hikvision devices via a Windows sync agent. Auto-calculates complex Indian payroll rules — PF, ESI, TDS, overtime, late penalties, sandwich rules, and per-employee overrides. Generates professional landscape PDF payslips in bulk. Features a color-coded attendance grid, revision history, advance/bonus tracking, and WhatsApp first-punch alerts. Offers subscription plans from Trial to Enterprise.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/04</span><span class="proj__name">WHATSAPP HUB — Business Communication Platform</span></div>
+        <p class="proj__one">Full-stack WhatsApp platform with live chat, bots, and native Android app</p>
+        <div class="proj__tags"><span class="tag">Kotlin</span><span class="tag">PHP</span><span class="tag">Meta API</span><span class="tag">Android</span><span class="tag">FPDF</span><span class="tag">PWA</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Full-stack WhatsApp business platform with a live chat interface, contact management with Google Contacts sync, bulk label operations, quick replies with media, and Meta Flows v3.1 quotation generator with PDF templates. Includes multi-app webhook fanout for Yukti ERP integration, QR code/PDF merge utilities, payment reminders, staff role-based access, and a native Android companion app with background polling notifications and inline reply.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/05</span><span class="proj__name">GOYAL SOLAR CRM — Solar Business Platform</span></div>
+        <p class="proj__one">7-stage project pipeline with environmental impact tracking and PDF proposals</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">FPDF</span><span class="tag">MySQL</span><span class="tag">WhatsApp</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Unified solar business CRM with Google Sheets client import. Tracks projects through a 7-stage pipeline (Application → Sanction → Load Extension → Meter Testing → Installation → Subsidy Portal → Miscellaneous), logs monthly generation with auto-calculated environmental impact (CO₂ reduced, coal saved, trees planted), manages AMC contracts with expiry alerts, and generates professional multi-page PDF proposals. WhatsApp templates handle generation reports, stage updates, and washing confirmations.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/06</span><span class="proj__name">DISPATCH — Delivery Label &amp; Memo SaaS</span></div>
+        <p class="proj__one">Multi-tenant label generation with e-Invoice import and subscription tiers</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">FPDF</span><span class="tag">MySQL</span><span class="tag">WhatsApp</span><span class="tag">SaaS</span><span class="tag">PWA</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Multi-tenant SaaS platform for professional delivery label and memo generation. Supports 4 label types — thermal (75×50mm), colored A4, delivery memos, and courier labels. Features e-Invoice JSON import that auto-fills everything, party &amp; item autocomplete, email &amp; WhatsApp PDF delivery, staff accounts with module-level access, subscription tiers, OTP phone-first registration, and keyboard shortcuts (F1-F4, Ctrl+Enter). Built as an offline-capable PWA.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/07</span><span class="proj__name">SETU — Data Transformation Platform</span></div>
+        <p class="proj__one">Config-driven vendor CSV/Excel auto-detection and format normalization</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">PhpSpreadsheet</span><span class="tag">MySQL</span><span class="tag">Bootstrap</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Config-driven vendor data transformation platform. Automatically detects and reformats CSV/Excel files from various suppliers into a standardized format using FILE_MATCH and STRING_MATCH rules. Handles multi-format parsing (CSV, XLS, XLSX via PhpSpreadsheet), smart date normalization (Excel serials, dd-mm-yy, ddmmyy), per-company isolation, conversion history with download links, and real-time UI console feedback during processing.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/08</span><span class="proj__name">GS SHOP — Solar E-commerce</span></div>
+        <p class="proj__one">Product storefront with WhatsApp admin bot and auto image optimization</p>
+        <div class="proj__tags"><span class="tag">Vue.js</span><span class="tag">PHP</span><span class="tag">Tailwind</span><span class="tag">WhatsApp Bot</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Self-hosted solar product e-commerce storefront for Goyal Solar Energy. Features a product catalog with search &amp; filter by brand/category, a WhatsApp admin bot for managing products (search, edit price, toggle visibility, upload images), auto image optimization with WebP conversion, SEO engine with Schema.org markup, and a web admin dashboard for bulk management.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/09</span><span class="proj__name">SARVATRA CLOUD — VPS Dashboard &amp; Auth Hub</span></div>
+        <p class="proj__one">Self-hosted infrastructure management with unified authentication for 9 apps</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">Nginx</span><span class="tag">systemd</span><span class="tag">Linux</span><span class="tag">MariaDB</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Self-built VPS management dashboard and unified auth hub. The control panel monitors real-time CPU/RAM/disk with 5-second auto-refresh, manages Python &amp; PHP projects with one-click deploy, handles Nginx vhost CRUD (proxy, PHP, static), systemd service lifecycle with live logs, and MariaDB browsing. The auth hub provides centralized login, multi-company support, app registry, and a User × App × Company × Role access matrix consumed by all 9 registered apps.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/10</span><span class="proj__name">SAARANSH — Financial Analytics</span></div>
+        <p class="proj__one">Financial data aggregation and analysis for business insights</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Analytics</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Financial data aggregation and analysis platform. Consolidates financial information from multiple sources, processes and normalizes datasets, and generates actionable business insights with visualizations for informed decision-making.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/11</span><span class="proj__name">BLAZE DOWNLOADER — Desktop Download Manager</span></div>
+        <p class="proj__one">IDM-style parallel downloads with dynamic segmentation and smart resume</p>
+        <div class="proj__tags"><span class="tag">Python</span><span class="tag">CustomTkinter</span><span class="tag">Threading</span><span class="tag">Cross-platform</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">IDM-style desktop download manager with dynamic segmentation that steals work from slow segments to keep all connections busy. Supports up to 32 parallel connections, smart resume from exact byte positions (survives crashes), priority-based queue, auto-categorization, speed limiting via token-bucket rate limiter, clipboard monitoring, scheduling with day-of-week support, and proxy/auth support. Modern dark UI with real-time segment visualization.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/12</span><span class="proj__name">WA HUB APP — Android Companion</span></div>
+        <p class="proj__one">Native Kotlin app with background notifications surviving reboot</p>
+        <div class="proj__tags"><span class="tag">Kotlin</span><span class="tag">Android</span><span class="tag">Gradle</span><span class="tag">GitHub Actions</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Native Android companion for WhatsApp Hub with background notifications that work even after app kill or device reboot. Uses a foreground service polling the API every 10 seconds, supports inline reply from the notification shade, media capture (camera, files, voice), auto-update with download prompts, and crash logging with copy-to-clipboard reports. Built with Kotlin, targeting Android 7.0–14.</div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj__top"><span class="proj__num">/13</span><span class="proj__name">EARTHSOL — Corporate Website</span></div>
+        <p class="proj__one">Dynamic product gallery website with Bootstrap 5 and PHP backend</p>
+        <div class="proj__tags"><span class="tag">PHP</span><span class="tag">Bootstrap 5</span><span class="tag">MySQL</span></div>
+        <button class="proj__toggle" aria-expanded="false">Read more <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+        <div class="proj__full">Corporate website for Earthsol with a dynamic product gallery that auto-loads images from the assets directory. Clean, responsive design built on Bootstrap 5 with PHP backend and MySQL database integration for product management.</div>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section__inner reveal">
+      <h2 class="sh">Skills</h2>
+      <div class="sh-bar"></div>
+      <div class="skills-grid">
+        <div class="skill-cat reveal">
+          <div class="skill-cat__label">Languages</div>
+          <div class="skill-cat__pills"><span class="pill">Python</span><span class="pill">PHP</span><span class="pill">JavaScript</span><span class="pill">Kotlin</span><span class="pill">Java</span><span class="pill">SQL</span></div>
+        </div>
+        <div class="skill-cat reveal">
+          <div class="skill-cat__label">AI &amp; ML</div>
+          <div class="skill-cat__pills"><span class="pill">YOLO</span><span class="pill">OpenCV</span><span class="pill">Flask</span></div>
+        </div>
+        <div class="skill-cat reveal">
+          <div class="skill-cat__label">Frontend</div>
+          <div class="skill-cat__pills"><span class="pill">Vue.js</span><span class="pill">Tailwind</span><span class="pill">Bootstrap</span><span class="pill">Chart.js</span><span class="pill">CustomTkinter</span></div>
+        </div>
+        <div class="skill-cat reveal">
+          <div class="skill-cat__label">Backend &amp; Cloud</div>
+          <div class="skill-cat__pills"><span class="pill">Nginx</span><span class="pill">Linux</span><span class="pill">systemd</span><span class="pill">Git</span></div>
+        </div>
+        <div class="skill-cat reveal">
+          <div class="skill-cat__label">Databases</div>
+          <div class="skill-cat__pills"><span class="pill">MySQL</span><span class="pill">MariaDB</span><span class="pill">Oracle</span></div>
+        </div>
+        <div class="skill-cat reveal">
+          <div class="skill-cat__label">Mobile &amp; APIs</div>
+          <div class="skill-cat__pills"><span class="pill">Android</span><span class="pill">WhatsApp API</span><span class="pill">FPDF</span><span class="pill">Meta API</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" id="education">
+    <div class="section__inner reveal">
+      <h2 class="sh">Education</h2>
+      <div class="sh-bar"></div>
+      <div class="edu-card">
+        <div class="edu-card__school">Shri Ramdeobaba College of Engineering and Management</div>
+        <div class="edu-card__degree">B.E. in Computer Science</div>
+        <div class="edu-card__meta">2016 — 2020 · Nagpur, India</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="section__inner reveal">
+      <h2 class="sh">Get in Touch</h2>
+      <div class="sh-bar"></div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-item__label">Email</span>
+          <span class="contact-item__val"><a href="mailto:goyalharsh07@gmail.com">goyalharsh07@gmail.com</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item__label">Phone</span>
+          <span class="contact-item__val"><a href="tel:+917588800097">+91 7588800097</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item__label">GitHub</span>
+          <span class="contact-item__val"><a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">github.com/harshanilgoyal</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item__label">LinkedIn</span>
+          <span class="contact-item__val"><a href="https://www.linkedin.com/in/harshanilgoyal/" target="_blank" rel="noopener">linkedin.com/in/harshanilgoyal</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item__label">Location</span>
+          <span class="contact-item__val">Nagpur, India</span>
+        </div>
+      </div>
+      <div style="text-align:center">
+        <a class="cta-btn" href="mailto:goyalharsh07@gmail.com">Send an Email →</a>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-<!-- ═══ Footer ═══ -->
-<footer class="footer">
-  <div class="footer-copy">© 2026 Harsh Goyal</div>
-  <div class="footer-links">
-    <a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://linkedin.com/in/harshanilgoyal" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:goyalharsh07@gmail.com">Email</a>
-  </div>
-</footer>
-
-<!-- ═══════════════════════════════════════════════
-     JavaScript
-     ═══════════════════════════════════════════════ -->
 <script>
-(function() {
-  'use strict';
+(function(){
+  var sidebar=document.getElementById('sidebar');
+  var backdrop=document.getElementById('backdrop');
+  var burger=document.getElementById('burgerBtn');
+  var body=document.body;
 
-  /* ── Preloader ── */
-  window.addEventListener('load', function() {
-    var pre = document.getElementById('preloader');
-    var main = document.getElementById('mainContent');
-    setTimeout(function() {
-      pre.classList.add('hide');
-      main.style.opacity = '1';
-      setTimeout(function() { pre.style.display = 'none'; }, 500);
-    }, 800);
-  });
+  function openSidebar(){sidebar.classList.add('open');backdrop.classList.add('show');body.classList.add('sidebar-open')}
+  function closeSidebar(){sidebar.classList.remove('open');backdrop.classList.remove('show');body.classList.remove('sidebar-open')}
 
-  /* ── Scroll Progress ── */
-  var progressBar = document.getElementById('scrollProgress');
-  function updateProgress() {
-    var scrollTop = window.scrollY;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = pct + '%';
-  }
+  burger.addEventListener('click',openSidebar);
+  backdrop.addEventListener('click',closeSidebar);
 
-  /* ── Nav scroll state ── */
-  var nav = document.getElementById('nav');
-  function updateNav() {
-    if (window.scrollY > 10) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  }
-
-  /* ── Active section highlighting ── */
-  var sections = document.querySelectorAll('section[id]');
-  var navAnchors = document.querySelectorAll('.nav-links a:not(.nav-resume)');
-  function updateActiveLink() {
-    var scrollPos = window.scrollY + 120;
-    sections.forEach(function(sec) {
-      var top = sec.offsetTop;
-      var bottom = top + sec.offsetHeight;
-      var id = sec.getAttribute('id');
-      navAnchors.forEach(function(a) {
-        if (a.getAttribute('href') === '#' + id) {
-          if (scrollPos >= top && scrollPos < bottom) {
-            a.classList.add('active');
-          } else {
-            a.classList.remove('active');
-          }
-        }
-      });
-    });
-  }
-
-  /* ── Combined scroll handler ── */
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        updateProgress();
-        updateNav();
-        updateActiveLink();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  /* ── Hamburger ── */
-  var hamburger = document.getElementById('hamburger');
-  var mobileNav = document.getElementById('mobileNav');
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-  });
-  document.querySelectorAll('.mobile-link').forEach(function(link) {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
+  var navLinks=document.querySelectorAll('.sidebar__link');
+  navLinks.forEach(function(link){
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=this.getAttribute('href').slice(1);
+      var target=document.getElementById(id);
+      if(target){
+        var offset=window.innerWidth<=768?70:0;
+        var y=target.getBoundingClientRect().top+window.pageYOffset-offset;
+        window.scrollTo({top:y,behavior:'smooth'});
+      }
+      closeSidebar();
     });
   });
 
-  /* ── Reveal on scroll ── */
-  var reveals = document.querySelectorAll('.reveal');
-  var revealObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        /* Stagger children within the same parent */
-        var parent = entry.target.parentElement;
-        var siblings = parent.querySelectorAll('.reveal');
-        var idx = Array.prototype.indexOf.call(siblings, entry.target);
-        entry.target.style.transitionDelay = (idx * 0.06) + 's';
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+  var sections=document.querySelectorAll('.section[id]');
+  var observerNav=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id=entry.target.id;
+        navLinks.forEach(function(l){
+          l.classList.toggle('active',l.getAttribute('href')==='#'+id);
+        });
       }
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(function(el) { revealObserver.observe(el); });
+  },{rootMargin:'-20% 0px -75% 0px',threshold:0});
+  sections.forEach(function(s){observerNav.observe(s)});
 
-  /* ── Stats counter ── */
-  var statNumbers = document.querySelectorAll('.stat-number[data-target]');
-  var statsAnimated = false;
-  var statsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting && !statsAnimated) {
-        statsAnimated = true;
-        statNumbers.forEach(function(el) {
-          var target = parseInt(el.getAttribute('data-target'), 10);
-          var duration = 1200;
-          var start = performance.now();
-          function tick(now) {
-            var elapsed = now - start;
-            var progress = Math.min(elapsed / duration, 1);
-            /* ease out quad */
-            var eased = 1 - (1 - progress) * (1 - progress);
-            el.textContent = Math.round(eased * target) + '+';
-            if (progress < 1) requestAnimationFrame(tick);
+  var reveals=document.querySelectorAll('.reveal');
+  var observerReveal=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry,i){
+      if(entry.isIntersecting){
+        setTimeout(function(){entry.target.classList.add('visible')},i*50);
+        observerReveal.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1});
+  reveals.forEach(function(el){observerReveal.observe(el)});
+
+  var statNums=document.querySelectorAll('.stat__num[data-target]');
+  var counted=false;
+  var observerStats=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting&&!counted){
+        counted=true;
+        statNums.forEach(function(el){
+          var target=parseInt(el.dataset.target,10);
+          var duration=1200;
+          var start=performance.now();
+          function tick(now){
+            var elapsed=now-start;
+            var progress=Math.min(elapsed/duration,1);
+            var eased=1-Math.pow(1-progress,3);
+            el.textContent=Math.round(eased*target)+'+';
+            if(progress<1)requestAnimationFrame(tick);
           }
           requestAnimationFrame(tick);
         });
-        statsObserver.disconnect();
       }
     });
-  }, { threshold: 0.3 });
-  statNumbers.forEach(function(el) { statsObserver.observe(el); });
+  },{threshold:0.3});
+  var statsContainer=document.querySelector('.stats');
+  if(statsContainer)observerStats.observe(statsContainer);
 
+  document.querySelectorAll('.proj__toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var full=this.nextElementSibling;
+      var isOpen=full.classList.toggle('open');
+      this.classList.toggle('open',isOpen);
+      this.setAttribute('aria-expanded',isOpen);
+      var label=this.childNodes[0];
+      label.textContent=isOpen?'Show less ':'Read more ';
+    });
+  });
 })();
-
-/* ── Project expand/collapse ── */
-function toggleProject(btn) {
-  var full = btn.nextElementSibling;
-  var isOpen = full.classList.contains('open');
-  full.classList.toggle('open');
-  btn.textContent = isOpen ? 'Read more +' : 'Show less −';
-}
 </script>
 </body>
 </html>
