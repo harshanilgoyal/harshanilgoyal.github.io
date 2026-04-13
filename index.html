@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harsh Goyal — Software Developer</title>
     <meta name="description" content="Harsh Goyal — Software Developer at Finastra. Builder of AI platforms, cloud infrastructure, and production systems.">
+    <meta name="theme-color" content="#0a0a1a">
+    <meta property="og:title" content="Harsh Goyal — Software Developer">
+    <meta property="og:description" content="Software Developer at Finastra. Builder of 11+ production systems — AI vision, cloud infrastructure, ERP, and automation.">
+    <meta property="og:image" content="https://harshanilgoyal.github.io/img/profile.jpg">
+    <meta property="og:url" content="https://harshanilgoyal.github.io">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="img/boss.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +65,23 @@
             33% { transform: translate(40px, -30px) scale(1.05); }
             66% { transform: translate(-20px, 20px) scale(0.95); }
         }
+
+        /* === DOT GRID PATTERN (distinctive technical overlay) === */
+        .dot-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* === CUSTOM SCROLLBAR === */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
 
         /* === NAVIGATION === */
         .navbar {
@@ -250,6 +274,11 @@
             background: var(--glass-bg); border: 1px solid var(--glass-border);
             border-radius: 16px; backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .stat-card:hover {
+            border-color: rgba(79,143,255,0.3);
+            box-shadow: 0 0 20px rgba(79,143,255,0.08);
         }
         .stat-number {
             font-size: 2.2rem; font-weight: 800; letter-spacing: -1px;
@@ -452,6 +481,7 @@
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
     </div>
+    <div class="dot-grid"></div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -508,15 +538,15 @@
         <div class="container">
             <div class="stats-grid reveal">
                 <div class="stat-card">
-                    <div class="stat-number">8+</div>
+                    <div class="stat-number" data-target="8" data-suffix="+">0</div>
                     <div class="stat-label">Production Systems</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">11+</div>
+                    <div class="stat-number" data-target="11" data-suffix="+">0</div>
                     <div class="stat-label">Services Deployed</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">5+</div>
+                    <div class="stat-number" data-target="7" data-suffix="+">0</div>
                     <div class="stat-label">Years Coding</div>
                 </div>
             </div>
@@ -572,7 +602,7 @@
             <div class="exp-card reveal">
                 <h3 class="exp-company">Finastra</h3>
                 <div class="exp-role">Software Developer</div>
-                <div class="exp-period">Full-time · Nagpur, India</div>
+                <div class="exp-period">Full-time · 2020 – Present · Nagpur, India</div>
                 <p class="exp-desc">
                     Working on enterprise-grade financial technology solutions at one of the world's largest fintech companies. Contributing to systems that power banking and financial services globally.
                 </p>
@@ -735,7 +765,7 @@
                     </div>
                 </div>
                 <div class="skill-group reveal">
-                    <h3><span class="sg-icon">��</span> Mobile</h3>
+                    <h3><span class="sg-icon">&#128241;</span> Mobile</h3>
                     <div class="skill-items">
                         <span class="skill-badge">Android (Kotlin)</span>
                         <span class="skill-badge">WhatsApp Business API</span>
@@ -803,11 +833,16 @@
                         <div class="c-label">GitHub</div>
                         <div class="c-value">harshanilgoyal</div>
                     </a>
-                    <a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener" class="contact-card">
+                    <a href="https://www.linkedin.com/in/harshanilgoyal/" target="_blank" rel="noopener" class="contact-card">
+                        <div class="c-icon">💼</div>
+                        <div class="c-label">LinkedIn</div>
+                        <div class="c-value">harshanilgoyal</div>
+                    </a>
+                    <div class="contact-card" style="cursor:default;">
                         <div class="c-icon">📍</div>
                         <div class="c-label">Location</div>
                         <div class="c-value">Nagpur, India</div>
-                    </a>
+                    </div>
                 </div>
                 <a href="mailto:goyalharsh07@gmail.com" class="btn btn-primary" style="margin-top:1rem;">Say Hello ✉️</a>
             </div>
@@ -819,10 +854,11 @@
         <div class="container">
             <div class="footer-links">
                 <a href="https://github.com/harshanilgoyal" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/harshanilgoyal/" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="mailto:goyalharsh07@gmail.com">Email</a>
                 <a href="resume.pdf" target="_blank">Resume</a>
             </div>
-            <p class="footer-copy">© 2025 Harsh Goyal. Built with code & caffeine.</p>
+            <p class="footer-copy">&copy; 2026 Harsh Goyal. Built with code &amp; caffeine.</p>
         </div>
     </footer>
 
@@ -831,8 +867,8 @@
         const roles = [
             'Software Developer at Finastra',
             'Builder of Production Systems',
-            'AI & Computer Vision Engineer',
-            'Cloud Infrastructure Architect',
+            'AI & Automation Enthusiast',
+            'DevOps & Cloud Self-hoster',
             'Full-Stack Developer'
         ];
         let roleIndex = 0, charIndex = 0, isDeleting = false;
@@ -874,6 +910,27 @@
             navLinks.classList.remove('open');
             navOverlay.classList.remove('show');
         }
+
+        // === Animated stat counters ===
+        const counters = document.querySelectorAll('.stat-number[data-target]');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = +el.dataset.target;
+                    const suffix = el.dataset.suffix || '';
+                    let current = 0;
+                    const step = Math.ceil(target / 40);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) { current = target; clearInterval(timer); }
+                        el.textContent = current + suffix;
+                    }, 35);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
 
         // === Scroll reveal ===
         const observer = new IntersectionObserver((entries) => {
