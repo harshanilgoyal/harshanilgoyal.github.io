@@ -131,15 +131,124 @@ a{color:inherit;text-decoration:none}
 .section{
   background:var(--bg-white);border-radius:14px;
   box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.03);
-  padding:60px 48px;margin-bottom:24px;max-width:880px;
+  padding:60px 48px;margin-bottom:24px;
 }
-.section__inner{max-width:800px}
+.section__inner{max-width:100%}
 
 .sh{font-weight:700;font-size:1.5rem;margin-bottom:4px}
 .sh-bar{width:40px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:28px}
 
-.reveal{opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease}
+/* ══ ANIMATIONS ══ */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(79,140,247,.25),0 0 40px rgba(79,140,247,.1)}50%{box-shadow:0 0 30px rgba(79,140,247,.4),0 0 60px rgba(79,140,247,.2)}}
+@keyframes rotateGlow{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes barGrow{from{width:0}to{width:40px}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Sidebar entrance animations */
+.sidebar__profile{animation:scaleIn .6s ease .2s both}
+.sidebar__sep{animation:fadeInLeft .4s ease .5s both}
+.sidebar__nav .sidebar__link:nth-child(1){animation:fadeInLeft .4s ease .3s both}
+.sidebar__nav .sidebar__link:nth-child(2){animation:fadeInLeft .4s ease .38s both}
+.sidebar__nav .sidebar__link:nth-child(3){animation:fadeInLeft .4s ease .46s both}
+.sidebar__nav .sidebar__link:nth-child(4){animation:fadeInLeft .4s ease .54s both}
+.sidebar__nav .sidebar__link:nth-child(5){animation:fadeInLeft .4s ease .62s both}
+.sidebar__nav .sidebar__link:nth-child(6){animation:fadeInLeft .4s ease .70s both}
+.sidebar__nav .sidebar__link:nth-child(7){animation:fadeInLeft .4s ease .78s both}
+.sidebar__bottom{animation:fadeInUp .5s ease .9s both}
+
+/* Photo glow pulse */
+.sidebar__photo{animation:glowPulse 3s ease-in-out infinite}
+
+/* Section reveal (enhanced) */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Section header bar animation */
+.reveal.visible .sh-bar{animation:barGrow .6s ease .3s both}
+
+/* Cards — stagger + lift on hover */
+.exp-card{
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.exp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+
+.proj{
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.proj:hover{transform:translateY(-4px);border-color:rgba(79,140,247,.3);box-shadow:0 8px 30px rgba(79,140,247,.08)}
+
+.edu-card{transition:transform .3s ease,box-shadow .3s ease}
+.edu-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+
+/* Staggered card reveals */
+.reveal.visible .exp-card:nth-child(1){animation:fadeInUp .5s ease .15s both}
+.reveal.visible .exp-card:nth-child(2){animation:fadeInUp .5s ease .3s both}
+
+.reveal.visible .proj:nth-child(1){animation:fadeInUp .4s ease .1s both}
+.reveal.visible .proj:nth-child(2){animation:fadeInUp .4s ease .15s both}
+.reveal.visible .proj:nth-child(3){animation:fadeInUp .4s ease .2s both}
+.reveal.visible .proj:nth-child(4){animation:fadeInUp .4s ease .25s both}
+.reveal.visible .proj:nth-child(5){animation:fadeInUp .4s ease .3s both}
+.reveal.visible .proj:nth-child(6){animation:fadeInUp .4s ease .35s both}
+.reveal.visible .proj:nth-child(7){animation:fadeInUp .4s ease .4s both}
+.reveal.visible .proj:nth-child(8){animation:fadeInUp .4s ease .45s both}
+.reveal.visible .proj:nth-child(9){animation:fadeInUp .4s ease .5s both}
+.reveal.visible .proj:nth-child(10){animation:fadeInUp .4s ease .55s both}
+.reveal.visible .proj:nth-child(11){animation:fadeInUp .4s ease .6s both}
+.reveal.visible .proj:nth-child(12){animation:fadeInUp .4s ease .65s both}
+.reveal.visible .proj:nth-child(13){animation:fadeInUp .4s ease .7s both}
+
+/* Skill pills shimmer on hover */
+.pill{
+  position:relative;overflow:hidden;
+  transition:transform .2s ease,background .2s,border-color .2s;
+}
+.pill:hover{transform:translateY(-2px);background:var(--accent-light);border-color:rgba(79,140,247,.3)}
+.pill::after{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(90deg,transparent,rgba(79,140,247,.08),transparent);
+  background-size:200% 100%;
+  animation:shimmer 2s ease-in-out infinite;
+  opacity:0;transition:opacity .3s;
+}
+.pill:hover::after{opacity:1}
+
+/* Contact items stagger */
+.reveal.visible .contact-item:nth-child(1){animation:fadeInUp .4s ease .1s both}
+.reveal.visible .contact-item:nth-child(2){animation:fadeInUp .4s ease .18s both}
+.reveal.visible .contact-item:nth-child(3){animation:fadeInUp .4s ease .26s both}
+.reveal.visible .contact-item:nth-child(4){animation:fadeInUp .4s ease .34s both}
+.reveal.visible .contact-item:nth-child(5){animation:fadeInUp .4s ease .42s both}
+
+/* CTA button pulse */
+.cta-btn{
+  transition:transform .2s ease,box-shadow .2s ease,background .2s;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(79,140,247,.25)}
+
+/* Stat numbers pop in */
+.reveal.visible .stat:nth-child(1){animation:scaleIn .5s ease .2s both}
+.reveal.visible .stat:nth-child(2){animation:scaleIn .5s ease .35s both}
+.reveal.visible .stat:nth-child(3){animation:scaleIn .5s ease .5s both}
+.reveal.visible .stat:nth-child(4){animation:scaleIn .5s ease .65s both}
+
+/* Skills grid stagger */
+.reveal.visible .skill-cat:nth-child(1){animation:fadeInUp .4s ease .1s both}
+.reveal.visible .skill-cat:nth-child(2){animation:fadeInUp .4s ease .2s both}
+.reveal.visible .skill-cat:nth-child(3){animation:fadeInUp .4s ease .3s both}
+.reveal.visible .skill-cat:nth-child(4){animation:fadeInUp .4s ease .4s both}
+
+/* Smooth page load */
+body{animation:fadeInUp .5s ease both}
+
+/* Reduce motion for accessibility */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
 
 /* ══ ABOUT ══ */
 .hero__greeting{font-weight:700;font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:8px}
@@ -240,7 +349,7 @@ a{color:inherit;text-decoration:none}
 /* ══ RESUME VIEWER ══ */
 .resume-viewer{text-align:center}
 .resume-viewer__frame{
-  width:100%;max-width:750px;height:920px;border:1px solid #e0e4ea;
+  width:100%;max-width:100%;height:920px;border:1px solid #e0e4ea;
   border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.06);margin:0 auto 24px;display:block;
 }
 .resume-viewer__actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
