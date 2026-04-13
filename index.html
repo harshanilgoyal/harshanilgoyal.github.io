@@ -517,7 +517,7 @@
                         <span id="typedText"></span><span class="cursor"></span>
                     </div>
                     <p class="hero-desc">
-                        I build production systems end-to-end — from AI-powered computer vision platforms to cloud infrastructure, ERP systems, and automation tools. I don't just write code; I ship products.
+                        I build production systems end-to-end — from AI-powered computer vision platforms to cloud infrastructure, ERP gateways, payroll engines, SaaS products, and automation tools. I don't just write code; I ship products.
                     </p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View My Work ↓</a>
@@ -538,11 +538,11 @@
         <div class="container">
             <div class="stats-grid reveal">
                 <div class="stat-card">
-                    <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                    <div class="stat-number" data-target="13" data-suffix="+">0</div>
                     <div class="stat-label">Production Systems</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" data-target="11" data-suffix="+">0</div>
+                    <div class="stat-number" data-target="13" data-suffix="+">0</div>
                     <div class="stat-label">Services Deployed</div>
                 </div>
                 <div class="stat-card">
@@ -563,7 +563,7 @@
             <div class="about-grid">
                 <div class="about-text reveal">
                     <p>I'm a software developer at <strong>Finastra</strong>, where I work on enterprise financial technology. But my real passion is building complete production systems from the ground up.</p>
-                    <p>Outside of my day job, I've independently designed, developed, and deployed over 8 production-grade platforms — ranging from an AI-powered cinema audience counting system to a full cloud infrastructure dashboard managing 11+ live services.</p>
+                    <p>Outside of my day job, I've independently designed, developed, and deployed over 13 production-grade platforms — ranging from an AI-powered cinema audience counting system with edge-cloud YOLO inference to a full cloud infrastructure dashboard managing all my live services on a self-hosted VPS.</p>
                     <p>I believe in owning the entire stack: writing the code, setting up the servers, configuring Nginx, managing SSL certs, and monitoring everything in production. If it needs to exist, I build it.</p>
                 </div>
                 <div class="about-highlights reveal">
@@ -622,91 +622,165 @@
                 <div class="project-card reveal">
                     <div class="project-icon p-icon-1">🎬</div>
                     <h3>Drashta AI</h3>
-                    <p>AI-powered cinema audience counting platform. Uses YOLO computer vision to count people from 9 RTSP cameras per screen. Includes a cloud API, background capture service, AI inference engine, and automated WhatsApp report delivery.</p>
+                    <p>End-to-end AI cinema occupancy platform with edge-cloud architecture. A background capture service at each cinema location feeds frames from 9 RTSP cameras to a cloud YOLO inference engine. Results flow into a PHP analytics backend that generates automated WhatsApp PDF reports to cinema owners. Includes 4 custom desktop tools for dataset collection, image quality filtering, YOLO annotation, and model training.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
-                        <span class="tag purple">YOLO</span>
+                        <span class="tag purple">YOLOv8</span>
                         <span class="tag cyan">Flask</span>
                         <span class="tag">PHP</span>
-                        <span class="tag pink">Nginx</span>
+                        <span class="tag pink">OpenCV</span>
+                        <span class="tag">PWA</span>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon p-icon-2">☁️</div>
+                    <div class="project-icon p-icon-2">🏢</div>
+                    <h3>Yukti ERP</h3>
+                    <p>Multi-tenant ERP gateway that bridges an on-premise Oracle 11g database to the cloud via a Python sync service. Features a staff dashboard with daily/monthly sales charts, real-time inventory across multiple godowns, general ledger with account hierarchies, e-way bill support, dispatch tracking with photo uploads, and a separate OTP-authenticated customer portal. Integrates AI insights from OpenAI, Gemini, and Anthropic.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag cyan">Chart.js</span>
+                        <span class="tag purple">Python</span>
+                        <span class="tag pink">Oracle</span>
+                        <span class="tag">MariaDB</span>
+                        <span class="tag cyan">PWA</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-3">💰</div>
+                    <h3>DhanLipi</h3>
+                    <p>Biometric-to-payslip platform connecting Hikvision devices via a Windows sync agent. Auto-calculates complex Indian payroll rules — PF, ESI, TDS, overtime, late penalties, sandwich rules, and per-employee overrides. Generates professional landscape PDF payslips in bulk. Features a color-coded attendance grid, revision history, advance/bonus tracking, and WhatsApp first-punch alerts. Offers subscription plans from Trial to Enterprise.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag cyan">MySQL</span>
+                        <span class="tag pink">Biometric</span>
+                        <span class="tag purple">PDF</span>
+                        <span class="tag">WhatsApp</span>
+                        <span class="tag cyan">PWA</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-4">💬</div>
+                    <h3>WhatsApp Hub</h3>
+                    <p>Full-stack WhatsApp business platform with a live chat interface, contact management with Google Contacts sync, bulk label operations, quick replies with media, and Meta Flows v3.1 quotation generator with PDF templates. Includes multi-app webhook fanout for Yukti ERP integration, QR code/PDF merge utilities, payment reminders, staff role-based access, and a native Android companion app with background polling notifications and inline reply.</p>
+                    <div class="project-tags">
+                        <span class="tag pink">Kotlin</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag purple">Meta API</span>
+                        <span class="tag cyan">Android</span>
+                        <span class="tag">FPDF</span>
+                        <span class="tag pink">PWA</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-1">☀️</div>
+                    <h3>Goyal Solar CRM</h3>
+                    <p>Unified solar business CRM managing 167+ clients imported from Google Sheets. Tracks projects through a 7-stage pipeline (Application &rarr; Sanction &rarr; Installation &rarr; Completion), logs monthly generation with auto-calculated environmental impact (CO&#8322; reduced, coal saved, trees planted), manages AMC contracts with expiry alerts, and generates professional multi-page PDF proposals. WhatsApp templates handle generation reports, stage updates, and washing confirmations.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag purple">FPDF</span>
+                        <span class="tag cyan">MySQL</span>
+                        <span class="tag pink">WhatsApp</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-2">📦</div>
+                    <h3>Dispatch</h3>
+                    <p>Multi-tenant SaaS platform for professional delivery label and memo generation. Supports 4 label types — thermal (75&times;50mm), colored A4, delivery memos, and courier labels. Features e-Invoice JSON import that auto-fills everything, party &amp; item autocomplete, email &amp; WhatsApp PDF delivery, staff accounts with module-level access, subscription tiers, OTP phone-first registration, and keyboard shortcuts (F1-F4, Ctrl+Enter). Built as an offline-capable PWA.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag purple">FPDF</span>
+                        <span class="tag cyan">MySQL</span>
+                        <span class="tag pink">WhatsApp</span>
+                        <span class="tag">SaaS</span>
+                        <span class="tag purple">PWA</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-3">🔄</div>
+                    <h3>Setu</h3>
+                    <p>Config-driven vendor data transformation platform. Automatically detects and reformats CSV/Excel files from various suppliers into a standardized format using FILE_MATCH and STRING_MATCH rules. Handles multi-format parsing (CSV, XLS, XLSX via PhpSpreadsheet), smart date normalization (Excel serials, dd-mm-yy, ddmmyy), per-company isolation, conversion history with download links, and real-time UI console feedback during processing.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag purple">PhpSpreadsheet</span>
+                        <span class="tag cyan">MySQL</span>
+                        <span class="tag pink">Bootstrap</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-4">🛒</div>
+                    <h3>GS Shop</h3>
+                    <p>Self-hosted solar product e-commerce storefront for Goyal Solar Energy. Features a product catalog with search &amp; filter by brand/category, a WhatsApp admin bot for managing products (search, edit price, toggle visibility, upload images), auto image optimization with WebP conversion, SEO engine with Schema.org markup, and a web admin dashboard for bulk management.</p>
+                    <div class="project-tags">
+                        <span class="tag cyan">Vue.js</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag purple">Tailwind</span>
+                        <span class="tag pink">WhatsApp Bot</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon p-icon-1">☁️</div>
                     <h3>Sarvatra Cloud</h3>
-                    <p>Full VPS management dashboard built from scratch. Manages 11+ deployed applications, services, domains, SSL certificates, and databases — a complete cloud control plane.</p>
+                    <p>Self-built VPS management dashboard and unified auth hub. The control panel monitors real-time CPU/RAM/disk with 5-second auto-refresh, manages Python &amp; PHP projects with one-click deploy, handles Nginx vhost CRUD (proxy, PHP, static), systemd service lifecycle with live logs, and MariaDB browsing. The auth hub provides centralized login, multi-company support, app registry, and a User &times; App &times; Company &times; Role access matrix consumed by all 13 apps.</p>
                     <div class="project-tags">
                         <span class="tag">PHP</span>
                         <span class="tag cyan">Nginx</span>
                         <span class="tag purple">systemd</span>
                         <span class="tag">Linux</span>
+                        <span class="tag pink">MariaDB</span>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon p-icon-3">☀️</div>
-                    <h3>Goyal Solar</h3>
-                    <p>Solar energy business CRM and website for a family solar installation company. Customer management, proposal generation, project tracking, and lead management.</p>
-                    <div class="project-tags">
-                        <span class="tag">PHP</span>
-                        <span class="tag purple">JavaScript</span>
-                        <span class="tag cyan">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <div class="project-icon p-icon-4">💰</div>
-                    <h3>DhanLipi</h3>
-                    <p>Payroll management system handling complex Indian payroll rules — PF, ESI, TDS, overtime calculations, and attendance tracking with full compliance.</p>
+                    <div class="project-icon p-icon-2">📊</div>
+                    <h3>Saaransh</h3>
+                    <p>Financial data aggregation and analysis platform. Consolidates financial information from multiple sources, processes and normalizes datasets, and generates actionable business insights with visualizations for informed decision-making.</p>
                     <div class="project-tags">
                         <span class="tag">PHP</span>
                         <span class="tag cyan">MySQL</span>
-                        <span class="tag pink">Payroll</span>
+                        <span class="tag purple">Analytics</span>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon p-icon-2">🔄</div>
-                    <h3>Setu</h3>
-                    <p>Data transformation platform for CSV/Excel conversion with a desktop right-click Windows shell integration. Seamless data format bridging.</p>
+                    <div class="project-icon p-icon-3">&#9889;</div>
+                    <h3>Blaze Downloader</h3>
+                    <p>IDM-style desktop download manager with dynamic segmentation that steals work from slow segments to keep all connections busy. Supports up to 32 parallel connections, smart resume from exact byte positions (survives crashes), priority-based queue, auto-categorization, speed limiting via token-bucket rate limiter, clipboard monitoring, scheduling with day-of-week support, and proxy/auth support. Modern dark UI with real-time segment visualization.</p>
                     <div class="project-tags">
-                        <span class="tag">PHP</span>
                         <span class="tag purple">Python</span>
-                        <span class="tag pink">Windows</span>
+                        <span class="tag">CustomTkinter</span>
+                        <span class="tag cyan">Threading</span>
+                        <span class="tag pink">Cross-platform</span>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon p-icon-1">🏢</div>
-                    <h3>Yukti ERP</h3>
-                    <p>Enterprise resource planning system for business operations management. Comprehensive modules for streamlining organizational workflows.</p>
-                    <div class="project-tags">
-                        <span class="tag">PHP</span>
-                        <span class="tag cyan">MySQL</span>
-                        <span class="tag purple">ERP</span>
-                    </div>
-                </div>
-
-                <div class="project-card reveal">
-                    <div class="project-icon p-icon-3">💬</div>
-                    <h3>WhatsApp Hub</h3>
-                    <p>WhatsApp automation suite including an Android app (Kotlin) and a bot service. Automated messaging, community management, and business communication tools.</p>
+                    <div class="project-icon p-icon-4">📱</div>
+                    <h3>WA Hub App</h3>
+                    <p>Native Android companion for WhatsApp Hub with background notifications that work even after app kill or device reboot. Uses a foreground service polling the API every 10 seconds, supports inline reply from the notification shade, media capture (camera, files, voice), auto-update with download prompts, and crash logging with copy-to-clipboard reports. Built with Kotlin, targeting Android 7.0–14.</p>
                     <div class="project-tags">
                         <span class="tag pink">Kotlin</span>
-                        <span class="tag">PHP</span>
                         <span class="tag purple">Android</span>
+                        <span class="tag">Gradle</span>
+                        <span class="tag cyan">GitHub Actions</span>
                     </div>
                 </div>
 
                 <div class="project-card reveal">
-                    <div class="project-icon p-icon-4">📊</div>
-                    <h3>Saaransh</h3>
-                    <p>Financial data aggregation and analysis platform. Consolidates and visualizes financial information for actionable business insights.</p>
+                    <div class="project-icon p-icon-1">&#127760;</div>
+                    <h3>Earthsol</h3>
+                    <p>Corporate website for Earth Sol with a dynamic product gallery that auto-loads images from the assets directory. Clean, responsive design built on Bootstrap 5 with PHP backend and MySQL database integration for product management.</p>
                     <div class="project-tags">
                         <span class="tag">PHP</span>
+                        <span class="tag purple">Bootstrap 5</span>
                         <span class="tag cyan">MySQL</span>
-                        <span class="tag">Analytics</span>
                     </div>
                 </div>
 
