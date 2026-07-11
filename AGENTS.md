@@ -82,6 +82,52 @@ These are the non-negotiable operational rules for this project. They apply to e
 - If a task has multiple sub-tasks, ALL sub-tasks must be completed before marking the parent task as done.
 - If a task is blocked, document the blocker and mark it as "in_progress" — do NOT mark it as "completed" and move on.
 - Partially completed work is the same as not started — production doesn't care about "almost done."
+## Skills & Tools (Installed)
+
+The following AI skills and tools are installed and available to all agents. Use them proactively wherever they add value.
+
+### Graphify (Knowledge Graph)
+- **What:** Turns code into a queryable knowledge graph (tree-sitter AST, local, no LLM needed for code).
+- **When to use:** Before answering architecture questions, use `graphify query "<question>"` instead of grepping. Use `graphify path "A" "B"` to trace connections. Use `graphify explain "NodeName"` for a concept's connections.
+- **Installed:** Global skill at `~/.config/opencode/skills/graphify/SKILL.md`. Run `graphify .` in any project to build its graph.
+- **Yukti graph:** Already built — `graphify-out/graph.json` (2023 nodes, 3703 edges, 237 communities). Query it with `graphify query "how does OTP auth work?"`.
+
+### ECC (Everything Claude Code)
+- **What:** Agent harness performance system — 261 skills for TDD, verification loops, production audits, code quality, continuous learning, security scanning.
+- **When to use:** Before deploying, run the `production-audit` skill. For new features, use `tdd-workflow`. For code review, use `plankton-code-quality`. For security, use `verification-loop`.
+- **Installed:** 28 skills at `~/.opencode/skills/` (minimal profile). Key skills: `tdd-workflow`, `verification-loop`, `production-audit`, `plankton-code-quality`, `strategic-compact`, `iterative-retrieval`, `e2e-testing`, `error-handling`.
+
+### UI/UX Pro Max (Design Intelligence)
+- **What:** 67 UI styles, 161 color palettes, 57 font pairings, 161 industry-specific reasoning rules for professional UI generation.
+- **When to use:** Before building any UI, the `@designer` agent should consult this skill for style recommendations, color palettes, and typography. Use `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<product type>" --design-system` to generate a complete design system.
+- **Installed:** Global skill at `~/.opencode/skills/ui-ux-pro-max/`.
+
+### Awesome DESIGN.md (Design System Reference)
+- **What:** Curated DESIGN.md files extracted from 73 popular brand design systems (Apple, Stripe, Linear, Shopify, Notion, Vercel, etc.).
+- **When to use:** Each project has a `DESIGN.md` file in its root. The `@designer` agent should read it before generating UI to ensure visual consistency with the chosen design language.
+- **Project assignments:**
+  - Yukti (ERP) -> Linear (clean enterprise)
+  - Yukti/client (Shop) -> Shopify (dark-first cinematic)
+  - Solar CRM -> Stripe (purple gradients, elegant)
+  - Saaransh -> Notion (warm minimalism)
+  - Dispatch -> Linear (ultra-minimal, precise)
+  - Server Panel -> Sentry (dark dashboard, data-dense)
+  - Dhan Lipi -> Vercel (black/white precision)
+  - Earthsol -> Apple (premium white space)
+  - Sarvatra -> Supabase (dark emerald, code-first)
+  - WhatsApp Bot -> Claude (warm terracotta, editorial)
+
+### MCP Servers (Model Context Protocol)
+- **sequential-thinking:** Step-by-step problem decomposition for complex architecture decisions. Use for multi-step reasoning.
+- **fetch:** Web content fetching and markdown conversion. Use for retrieving API docs, checking live URLs, and researching dependencies.
+
+### How Agents Should Use These Tools
+- **@architect:** Use Graphify `query` and `path` to understand existing architecture before designing new features. Use `sequential-thinking` MCP for complex design decisions.
+- **@developer:** Use Graphify `explain` to understand a function's connections before modifying it. Use ECC `tdd-workflow` for new features. Use `fetch` MCP to verify API docs.
+- **@reviewer:** Use ECC `production-audit` and `plankton-code-quality` skills for comprehensive code review. Use Graphify to trace impact of changes.
+- **@designer:** Always read the project's `DESIGN.md` first. Use UI/UX Pro Max `search.py` for design system generation. Follow the design tokens in DESIGN.md.
+- **@devops:** Use ECC `verification-loop` after deploys. Use Graphify to verify no broken connections after refactoring.
+- **@researcher:** Use `fetch` MCP to retrieve and verify live API documentation. Use Graphify `query` to find relevant code sections.
 ## Strict Matrix Rules
 - DO NOT leak logic from other projects.
 - Always respect the existing architecture outlined above.
