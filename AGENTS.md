@@ -70,6 +70,18 @@ These are the non-negotiable operational rules for this project. They apply to e
 - Use: `echo "Harsh@7086##" | sudo -S git -C /var/www/<project> fetch origin && echo "Harsh@7086##" | sudo -S git -C /var/www/<project> reset --hard origin/<branch>`
 - After pull, fix ownership: `echo "Harsh@7086##" | sudo -S chown -R www-data:goyal /var/www/<project>`
 - The `deploy.bat` script handles this automatically for most projects, but manual sudo may be needed for edge cases.
+### Task Completion Discipline
+- **NEVER move to a new task/todo until the current task is FULLY completed.** A task is not "done" until:
+  1. Code changes are made and tested locally
+  2. PHP lint passes (for PHP files)
+  3. Changes are committed to git
+  4. Changes are pushed to GitHub
+  5. Changes are pulled on the VPS
+  6. Smoke test passes on the live URL
+  7. Any issues found during smoke test are fixed before moving on
+- If a task has multiple sub-tasks, ALL sub-tasks must be completed before marking the parent task as done.
+- If a task is blocked, document the blocker and mark it as "in_progress" — do NOT mark it as "completed" and move on.
+- Partially completed work is the same as not started — production doesn't care about "almost done."
 ## Strict Matrix Rules
 - DO NOT leak logic from other projects.
 - Always respect the existing architecture outlined above.
